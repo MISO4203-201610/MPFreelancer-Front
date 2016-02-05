@@ -48,13 +48,6 @@
                 url: 'categoryContext',
                 options: [],
                 required: true
-            }, {
-                name: 'sponsor',
-                displayName: 'Sponsor',
-                type: 'Reference',
-                url: 'projectSponsorContext',
-                options: [],
-                required: true
             }],
         childs: [{
                 name: 'expectedskills',

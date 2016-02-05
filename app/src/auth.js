@@ -41,7 +41,7 @@
                                 break;
                             case 'admin':
                                 $rootScope.category = true;
-                                $rootScope.project = true;
+                                $rootScope.project = false;
                                 $rootScope.projectSponsor = true;
                                 $rootScope.skill = true;
                                 $rootScope.freelancer = true;

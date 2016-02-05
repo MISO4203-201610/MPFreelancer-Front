@@ -32,16 +32,13 @@
 
     mod.controller('projectListCtrl', ['$scope','Restangular', function ($scope,Restangular) {
             $scope.getProjectList = function () {
-            Restangular.all("projectSponsors").getList().then(function (response) {
+            Restangular.all("projects/all").getList().then(function (response) {
                 $scope.projects = response;
             });
 
-            Restangular.all("users").customGET('me').then(function (response) {
-                $scope.user = response;
-            });
         };
 
-            //$scope.getProjectList();
+            $scope.getProjectList();
 
         }]);
 })(window.angular);
