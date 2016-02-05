@@ -23,10 +23,10 @@ public class FreelancerDTO {
     @PodamStrategyValue(DateStrategy.class)
     private Date bithday;
     private String picture;
-    
-    private List<EducationDTO> titles = new ArrayList<>();
     @PodamExclude
     private List<SkillDTO> skills = new ArrayList<>();
+    
+    private List<EducationDTO> titles = new ArrayList<>();
 
     /**
      * @generated
@@ -101,20 +101,6 @@ public class FreelancerDTO {
     /**
      * @generated
      */
-    public List<EducationDTO> getTitles() {
-        return titles;
-    }
-
-    /**
-     * @generated
-     */
-    public void setTitles(List<EducationDTO> titles) {
-        this.titles = titles;
-    }
-
-    /**
-     * @generated
-     */
     public List<SkillDTO> getSkills() {
         return skills;
     }
@@ -124,6 +110,20 @@ public class FreelancerDTO {
      */
     public void setSkills(List<SkillDTO> skills) {
         this.skills = skills;
+    }
+
+    /**
+     * @generated
+     */
+    public List<EducationDTO> getTitles() {
+        return titles;
+    }
+
+    /**
+     * @generated
+     */
+    public void setTitles(List<EducationDTO> titles) {
+        this.titles = titles;
     }
 
 }

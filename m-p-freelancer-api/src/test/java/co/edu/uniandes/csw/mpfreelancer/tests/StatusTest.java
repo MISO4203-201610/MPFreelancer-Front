@@ -4,6 +4,7 @@ import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.mpfreelancer.dtos.StatusDTO;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
+import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectSponsorDTO;
 import co.edu.uniandes.csw.mpfreelancer.services.StatusService;
 import java.io.File;
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class StatusTest {
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
     private final String statusPath = "statuss";
     private final static List<StatusDTO> oraculo = new ArrayList<>();
-    private final String projectPath = "projects";
-    private final static List<ProjectDTO> oraculoProject = new ArrayList<>();
+    private final String projectsPath = "projects";
+    private final static List<ProjectDTO> oraculoProjects = new ArrayList<>();
     private WebTarget target;
     private final String apiPath = "api";
     private final String username = System.getenv("USERNAME_USER");
@@ -94,9 +95,9 @@ public class StatusTest {
 
             oraculo.add(status);
 
-            ProjectDTO project = factory.manufacturePojo(ProjectDTO.class);
-            project.setId(i + 1L);
-            oraculoProject.add(project);
+            ProjectDTO projects = factory.manufacturePojo(ProjectDTO.class);
+            projects.setId(i + 1L);
+            oraculoProjects.add(projects);
         }
     }
 
@@ -124,7 +125,16 @@ public class StatusTest {
     public void createStatusTest() throws IOException {
         StatusDTO status = oraculo.get(0);
         Cookie cookieSessionId = login(username, password);
-        Response response = target.path(statusPath)
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        ProjectSponsorDTO projectSponsor = factory.manufacturePojo(ProjectSponsorDTO.class);
+        projectSponsor.setId(1L);
+        
+        Response response = target.path("projectSponsors")
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(projectSponsor, MediaType.APPLICATION_JSON));
+        
+        response = target.path(statusPath)
                 .request().cookie(cookieSessionId)
                 .post(Entity.entity(status, MediaType.APPLICATION_JSON));
         StatusDTO  statusTest = (StatusDTO) response.readEntity(StatusDTO.class);
@@ -183,85 +193,85 @@ public class StatusTest {
 
     @Test
     @InSequence(5)
-    public void addProjectTest() {
+    public void addProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
-        ProjectDTO project = oraculoProject.get(0);
+        ProjectDTO projects = oraculoProjects.get(0);
         StatusDTO status = oraculo.get(0);
 
 
         Response response = target.path("projects")
                 .request().cookie(cookieSessionId)
-                .post(Entity.entity(project, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(projects, MediaType.APPLICATION_JSON));
 
-        ProjectDTO projectTest = (ProjectDTO) response.readEntity(ProjectDTO.class);
-        Assert.assertEquals(project.getId(), projectTest.getId());
-        Assert.assertEquals(project.getName(), projectTest.getName());
-        Assert.assertEquals(project.getDescription(), projectTest.getDescription());
-        Assert.assertEquals(project.getPrice(), projectTest.getPrice());
-        Assert.assertEquals(project.getDeadLine(), projectTest.getDeadLine());
-        Assert.assertEquals(project.getPublicationDate(), projectTest.getPublicationDate());
-        Assert.assertEquals(project.getStartDate(), projectTest.getStartDate());
+        ProjectDTO projectsTest = (ProjectDTO) response.readEntity(ProjectDTO.class);
+        Assert.assertEquals(projects.getId(), projectsTest.getId());
+        Assert.assertEquals(projects.getName(), projectsTest.getName());
+        Assert.assertEquals(projects.getDescription(), projectsTest.getDescription());
+        Assert.assertEquals(projects.getPrice(), projectsTest.getPrice());
+        Assert.assertEquals(projects.getDeadLine(), projectsTest.getDeadLine());
+        Assert.assertEquals(projects.getPublicationDate(), projectsTest.getPublicationDate());
+        Assert.assertEquals(projects.getStartDate(), projectsTest.getStartDate());
         Assert.assertEquals(Created, response.getStatus());
 
         response = target.path(statusPath).path(status.getId().toString())
-                .path(projectPath).path(project.getId().toString())
+                .path(projectsPath).path(projects.getId().toString())
                 .request().cookie(cookieSessionId)
-                .post(Entity.entity(project, MediaType.APPLICATION_JSON));
+                .post(Entity.entity(projects, MediaType.APPLICATION_JSON));
 
-        projectTest = (ProjectDTO) response.readEntity(ProjectDTO.class);
+        projectsTest = (ProjectDTO) response.readEntity(ProjectDTO.class);
         Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(project.getId(), projectTest.getId());
+        Assert.assertEquals(projects.getId(), projectsTest.getId());
     }
 
     @Test
     @InSequence(6)
-    public void listProjectTest() throws IOException {
+    public void listProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         StatusDTO status = oraculo.get(0);
 
         Response response = target.path(statusPath)
                 .path(status.getId().toString())
-                .path(projectPath)
+                .path(projectsPath)
                 .request().cookie(cookieSessionId).get();
 
-        String projectList = response.readEntity(String.class);
-        List<ProjectDTO> projectListTest = new ObjectMapper().readValue(projectList, List.class);
+        String projectsList = response.readEntity(String.class);
+        List<ProjectDTO> projectsListTest = new ObjectMapper().readValue(projectsList, List.class);
         Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(1, projectListTest.size());
+        Assert.assertEquals(1, projectsListTest.size());
     }
 
     @Test
     @InSequence(7)
-    public void getProjectTest() throws IOException {
+    public void getProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
-        ProjectDTO project = oraculoProject.get(0);
+        ProjectDTO projects = oraculoProjects.get(0);
         StatusDTO status = oraculo.get(0);
 
-        ProjectDTO projectTest = target.path(statusPath)
-                .path(status.getId().toString()).path(projectPath)
-                .path(project.getId().toString())
+        ProjectDTO projectsTest = target.path(statusPath)
+                .path(status.getId().toString()).path(projectsPath)
+                .path(projects.getId().toString())
                 .request().cookie(cookieSessionId).get(ProjectDTO.class);
 
-        Assert.assertEquals(project.getId(), projectTest.getId());
-        Assert.assertEquals(project.getName(), projectTest.getName());
-        Assert.assertEquals(project.getDescription(), projectTest.getDescription());
-        Assert.assertEquals(project.getPrice(), projectTest.getPrice());
-        Assert.assertEquals(project.getDeadLine(), projectTest.getDeadLine());
-        Assert.assertEquals(project.getPublicationDate(), projectTest.getPublicationDate());
-        Assert.assertEquals(project.getStartDate(), projectTest.getStartDate());
+        Assert.assertEquals(projects.getId(), projectsTest.getId());
+        Assert.assertEquals(projects.getName(), projectsTest.getName());
+        Assert.assertEquals(projects.getDescription(), projectsTest.getDescription());
+        Assert.assertEquals(projects.getPrice(), projectsTest.getPrice());
+        Assert.assertEquals(projects.getDeadLine(), projectsTest.getDeadLine());
+        Assert.assertEquals(projects.getPublicationDate(), projectsTest.getPublicationDate());
+        Assert.assertEquals(projects.getStartDate(), projectsTest.getStartDate());
     }
 
     @Test
     @InSequence(8)
-    public void removeProjectTest() {
+    public void removeProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
-        ProjectDTO project = oraculoProject.get(0);
+        ProjectDTO projects = oraculoProjects.get(0);
         StatusDTO status = oraculo.get(0);
 
         Response response = target.path(statusPath).path(status.getId().toString())
-                .path(projectPath).path(project.getId().toString())
+                .path(projectsPath).path(projects.getId().toString())
                 .request().cookie(cookieSessionId).delete();
         Assert.assertEquals(OkWithoutContent, response.getStatus());
     }

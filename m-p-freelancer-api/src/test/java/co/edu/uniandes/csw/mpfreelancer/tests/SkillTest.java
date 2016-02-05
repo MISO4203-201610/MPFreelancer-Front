@@ -3,8 +3,9 @@ package co.edu.uniandes.csw.mpfreelancer.tests;
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.mpfreelancer.dtos.SkillDTO;
-import co.edu.uniandes.csw.mpfreelancer.dtos.FreelancerDTO;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
+import co.edu.uniandes.csw.mpfreelancer.dtos.FreelancerDTO;
+import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectSponsorDTO;
 import co.edu.uniandes.csw.mpfreelancer.services.SkillService;
 import java.io.File;
 import java.io.IOException;
@@ -44,10 +45,10 @@ public class SkillTest {
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
     private final String skillPath = "skills";
     private final static List<SkillDTO> oraculo = new ArrayList<>();
-    private final String freelancersPath = "freelancers";
-    private final static List<FreelancerDTO> oraculoFreelancers = new ArrayList<>();
     private final String projectsPath = "projects";
     private final static List<ProjectDTO> oraculoProjects = new ArrayList<>();
+    private final String freelancersPath = "freelancers";
+    private final static List<FreelancerDTO> oraculoFreelancers = new ArrayList<>();
     private WebTarget target;
     private final String apiPath = "api";
     private final String username = System.getenv("USERNAME_USER");
@@ -97,12 +98,12 @@ public class SkillTest {
 
             oraculo.add(skill);
 
-            FreelancerDTO freelancers = factory.manufacturePojo(FreelancerDTO.class);
-            freelancers.setId(i + 1L);
-            oraculoFreelancers.add(freelancers);
             ProjectDTO projects = factory.manufacturePojo(ProjectDTO.class);
             projects.setId(i + 1L);
             oraculoProjects.add(projects);
+            FreelancerDTO freelancers = factory.manufacturePojo(FreelancerDTO.class);
+            freelancers.setId(i + 1L);
+            oraculoFreelancers.add(freelancers);
         }
     }
 
@@ -130,7 +131,16 @@ public class SkillTest {
     public void createSkillTest() throws IOException {
         SkillDTO skill = oraculo.get(0);
         Cookie cookieSessionId = login(username, password);
-        Response response = target.path(skillPath)
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        ProjectSponsorDTO projectSponsor = factory.manufacturePojo(ProjectSponsorDTO.class);
+        projectSponsor.setId(1L);
+        
+        Response response = target.path("projectSponsors")
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(projectSponsor, MediaType.APPLICATION_JSON));
+        
+        response = target.path(skillPath)
                 .request().cookie(cookieSessionId)
                 .post(Entity.entity(skill, MediaType.APPLICATION_JSON));
         SkillDTO  skillTest = (SkillDTO) response.readEntity(SkillDTO.class);
@@ -193,87 +203,6 @@ public class SkillTest {
 
     @Test
     @InSequence(5)
-    public void addFreelancersTest() {
-        Cookie cookieSessionId = login(username, password);
-
-        FreelancerDTO freelancers = oraculoFreelancers.get(0);
-        SkillDTO skill = oraculo.get(0);
-
-
-        Response response = target.path("freelancers")
-                .request().cookie(cookieSessionId)
-                .post(Entity.entity(freelancers, MediaType.APPLICATION_JSON));
-
-        FreelancerDTO freelancersTest = (FreelancerDTO) response.readEntity(FreelancerDTO.class);
-        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
-        Assert.assertEquals(freelancers.getName(), freelancersTest.getName());
-        Assert.assertEquals(freelancers.getRate(), freelancersTest.getRate());
-        Assert.assertEquals(freelancers.getBithday(), freelancersTest.getBithday());
-        Assert.assertEquals(freelancers.getPicture(), freelancersTest.getPicture());
-        Assert.assertEquals(Created, response.getStatus());
-
-        response = target.path(skillPath).path(skill.getId().toString())
-                .path(freelancersPath).path(freelancers.getId().toString())
-                .request().cookie(cookieSessionId)
-                .post(Entity.entity(freelancers, MediaType.APPLICATION_JSON));
-
-        freelancersTest = (FreelancerDTO) response.readEntity(FreelancerDTO.class);
-        Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
-    }
-
-    @Test
-    @InSequence(6)
-    public void listFreelancersTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
-        SkillDTO skill = oraculo.get(0);
-
-        Response response = target.path(skillPath)
-                .path(skill.getId().toString())
-                .path(freelancersPath)
-                .request().cookie(cookieSessionId).get();
-
-        String freelancersList = response.readEntity(String.class);
-        List<FreelancerDTO> freelancersListTest = new ObjectMapper().readValue(freelancersList, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(1, freelancersListTest.size());
-    }
-
-    @Test
-    @InSequence(7)
-    public void getFreelancersTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
-        FreelancerDTO freelancers = oraculoFreelancers.get(0);
-        SkillDTO skill = oraculo.get(0);
-
-        FreelancerDTO freelancersTest = target.path(skillPath)
-                .path(skill.getId().toString()).path(freelancersPath)
-                .path(freelancers.getId().toString())
-                .request().cookie(cookieSessionId).get(FreelancerDTO.class);
-
-        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
-        Assert.assertEquals(freelancers.getName(), freelancersTest.getName());
-        Assert.assertEquals(freelancers.getRate(), freelancersTest.getRate());
-        Assert.assertEquals(freelancers.getBithday(), freelancersTest.getBithday());
-        Assert.assertEquals(freelancers.getPicture(), freelancersTest.getPicture());
-    }
-
-    @Test
-    @InSequence(8)
-    public void removeFreelancersTest() {
-        Cookie cookieSessionId = login(username, password);
-
-        FreelancerDTO freelancers = oraculoFreelancers.get(0);
-        SkillDTO skill = oraculo.get(0);
-
-        Response response = target.path(skillPath).path(skill.getId().toString())
-                .path(freelancersPath).path(freelancers.getId().toString())
-                .request().cookie(cookieSessionId).delete();
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
-    }
-
-    @Test
-    @InSequence(9)
     public void addProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
@@ -306,7 +235,7 @@ public class SkillTest {
     }
 
     @Test
-    @InSequence(10)
+    @InSequence(6)
     public void listProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         SkillDTO skill = oraculo.get(0);
@@ -323,7 +252,7 @@ public class SkillTest {
     }
 
     @Test
-    @InSequence(11)
+    @InSequence(7)
     public void getProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectDTO projects = oraculoProjects.get(0);
@@ -344,7 +273,7 @@ public class SkillTest {
     }
 
     @Test
-    @InSequence(12)
+    @InSequence(8)
     public void removeProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
@@ -353,6 +282,87 @@ public class SkillTest {
 
         Response response = target.path(skillPath).path(skill.getId().toString())
                 .path(projectsPath).path(projects.getId().toString())
+                .request().cookie(cookieSessionId).delete();
+        Assert.assertEquals(OkWithoutContent, response.getStatus());
+    }
+
+    @Test
+    @InSequence(9)
+    public void addFreelancersTest() {
+        Cookie cookieSessionId = login(username, password);
+
+        FreelancerDTO freelancers = oraculoFreelancers.get(0);
+        SkillDTO skill = oraculo.get(0);
+
+
+        Response response = target.path("freelancers")
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(freelancers, MediaType.APPLICATION_JSON));
+
+        FreelancerDTO freelancersTest = (FreelancerDTO) response.readEntity(FreelancerDTO.class);
+        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
+        Assert.assertEquals(freelancers.getName(), freelancersTest.getName());
+        Assert.assertEquals(freelancers.getRate(), freelancersTest.getRate());
+        Assert.assertEquals(freelancers.getBithday(), freelancersTest.getBithday());
+        Assert.assertEquals(freelancers.getPicture(), freelancersTest.getPicture());
+        Assert.assertEquals(Created, response.getStatus());
+
+        response = target.path(skillPath).path(skill.getId().toString())
+                .path(freelancersPath).path(freelancers.getId().toString())
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(freelancers, MediaType.APPLICATION_JSON));
+
+        freelancersTest = (FreelancerDTO) response.readEntity(FreelancerDTO.class);
+        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
+    }
+
+    @Test
+    @InSequence(10)
+    public void listFreelancersTest() throws IOException {
+        Cookie cookieSessionId = login(username, password);
+        SkillDTO skill = oraculo.get(0);
+
+        Response response = target.path(skillPath)
+                .path(skill.getId().toString())
+                .path(freelancersPath)
+                .request().cookie(cookieSessionId).get();
+
+        String freelancersList = response.readEntity(String.class);
+        List<FreelancerDTO> freelancersListTest = new ObjectMapper().readValue(freelancersList, List.class);
+        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(1, freelancersListTest.size());
+    }
+
+    @Test
+    @InSequence(11)
+    public void getFreelancersTest() throws IOException {
+        Cookie cookieSessionId = login(username, password);
+        FreelancerDTO freelancers = oraculoFreelancers.get(0);
+        SkillDTO skill = oraculo.get(0);
+
+        FreelancerDTO freelancersTest = target.path(skillPath)
+                .path(skill.getId().toString()).path(freelancersPath)
+                .path(freelancers.getId().toString())
+                .request().cookie(cookieSessionId).get(FreelancerDTO.class);
+
+        Assert.assertEquals(freelancers.getId(), freelancersTest.getId());
+        Assert.assertEquals(freelancers.getName(), freelancersTest.getName());
+        Assert.assertEquals(freelancers.getRate(), freelancersTest.getRate());
+        Assert.assertEquals(freelancers.getBithday(), freelancersTest.getBithday());
+        Assert.assertEquals(freelancers.getPicture(), freelancersTest.getPicture());
+    }
+
+    @Test
+    @InSequence(12)
+    public void removeFreelancersTest() {
+        Cookie cookieSessionId = login(username, password);
+
+        FreelancerDTO freelancers = oraculoFreelancers.get(0);
+        SkillDTO skill = oraculo.get(0);
+
+        Response response = target.path(skillPath).path(skill.getId().toString())
+                .path(freelancersPath).path(freelancers.getId().toString())
                 .request().cookie(cookieSessionId).delete();
         Assert.assertEquals(OkWithoutContent, response.getStatus());
     }

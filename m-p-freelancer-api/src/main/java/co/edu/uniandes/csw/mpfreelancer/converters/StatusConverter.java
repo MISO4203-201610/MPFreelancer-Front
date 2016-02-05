@@ -110,7 +110,7 @@ public abstract class StatusConverter {
     public static StatusDTO fullEntity2DTO(StatusEntity entity) {
         if (entity != null) {
             StatusDTO dto = basicEntity2DTO(entity);
-            dto.setProject(ProjectConverter.listEntity2DTO(entity.getProject()));
+            dto.setProjects(ProjectConverter.listEntity2DTO(entity.getProject()));
             return dto;
         } else {
             return null;
@@ -128,7 +128,7 @@ public abstract class StatusConverter {
     public static StatusEntity fullDTO2Entity(StatusDTO dto) {
         if (dto != null) {
             StatusEntity entity = basicDTO2Entity(dto);
-            entity.setProject(ProjectConverter.listDTO2Entity(dto.getProject()));
+            entity.setProject(ProjectConverter.listDTO2Entity(dto.getProjects()));
             return entity;
         } else {
             return null;

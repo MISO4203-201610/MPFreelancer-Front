@@ -17,13 +17,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.mpfreelancer.api.IProjectSponsorLogic;
-import co.edu.uniandes.csw.mpfreelancer.converters.FreelancerConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectSponsorDTO;
 import co.edu.uniandes.csw.mpfreelancer.entities.ProjectSponsorEntity;
 import co.edu.uniandes.csw.mpfreelancer.converters.ProjectSponsorConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
 import co.edu.uniandes.csw.mpfreelancer.converters.ProjectConverter;
-import co.edu.uniandes.csw.mpfreelancer.dtos.FreelancerDTO;
 import com.stormpath.sdk.account.Account;
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,14 +66,6 @@ public class ProjectSponsorService {
     public ProjectSponsorDTO getProjectSponsor(@PathParam("id") Long id) {
         return ProjectSponsorConverter.fullEntity2DTO(projectSponsorLogic.getProjectSponsor(id));
     }
-
-    /**
-     * Se encarga de crear un book en la base de datos.
-     *
-     * @param dto Objeto de ProjectSponsorDTO con los datos nuevos
-     * @return Objeto de ProjectSponsorDTO con los datos nuevos y su ID.
-     * @generated
-     */
     
     @GET
     @Path("/current")    
@@ -89,7 +79,14 @@ public class ProjectSponsorService {
             return null;
         }
     }
-    
+
+    /**
+     * Se encarga de crear un book en la base de datos.
+     *
+     * @param dto Objeto de ProjectSponsorDTO con los datos nuevos
+     * @return Objeto de ProjectSponsorDTO con los datos nuevos y su ID.
+     * @generated
+     */
     @POST
     @StatusCreated
     public ProjectSponsorDTO createProjectSponsor(ProjectSponsorDTO dto) {

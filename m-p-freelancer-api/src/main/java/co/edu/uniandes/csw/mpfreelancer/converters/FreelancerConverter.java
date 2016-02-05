@@ -119,8 +119,8 @@ public abstract class FreelancerConverter {
     public static FreelancerDTO fullEntity2DTO(FreelancerEntity entity) {
         if (entity != null) {
             FreelancerDTO dto = basicEntity2DTO(entity);
-            dto.setTitles(EducationConverter.listEntity2DTO(entity.getTitles()));
             dto.setSkills(SkillConverter.listEntity2DTO(entity.getSkills()));
+            dto.setTitles(EducationConverter.listEntity2DTO(entity.getTitles()));
             return dto;
         } else {
             return null;
@@ -138,8 +138,8 @@ public abstract class FreelancerConverter {
     public static FreelancerEntity fullDTO2Entity(FreelancerDTO dto) {
         if (dto != null) {
             FreelancerEntity entity = basicDTO2Entity(dto);
-            entity.setTitles(EducationConverter.childListDTO2Entity(dto.getTitles(), entity));
             entity.setSkills(SkillConverter.listDTO2Entity(dto.getSkills()));
+            entity.setTitles(EducationConverter.childListDTO2Entity(dto.getTitles(), entity));
             return entity;
         } else {
             return null;

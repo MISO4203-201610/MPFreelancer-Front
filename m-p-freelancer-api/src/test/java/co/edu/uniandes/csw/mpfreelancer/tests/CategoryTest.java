@@ -4,6 +4,7 @@ import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.mpfreelancer.dtos.CategoryDTO;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
+import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectSponsorDTO;
 import co.edu.uniandes.csw.mpfreelancer.services.CategoryService;
 import java.io.File;
 import java.io.IOException;
@@ -124,7 +125,18 @@ public class CategoryTest {
     public void createCategoryTest() throws IOException {
         CategoryDTO category = oraculo.get(0);
         Cookie cookieSessionId = login(username, password);
-        Response response = target.path(categoryPath)
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        ProjectSponsorDTO projectSponsor = factory.manufacturePojo(ProjectSponsorDTO.class);
+        projectSponsor.setId(1L);
+        
+        Response response = target.path("projectSponsors")
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(projectSponsor, MediaType.APPLICATION_JSON));
+        
+        
+        
+        response = target.path(categoryPath)
                 .request().cookie(cookieSessionId)
                 .post(Entity.entity(category, MediaType.APPLICATION_JSON));
         CategoryDTO  categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);

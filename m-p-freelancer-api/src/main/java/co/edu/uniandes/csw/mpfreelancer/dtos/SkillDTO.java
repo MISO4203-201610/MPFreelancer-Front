@@ -15,9 +15,9 @@ public class SkillDTO {
     private String name;
     private String description;
     @PodamExclude
-    private List<FreelancerDTO> freelancers = new ArrayList<>();
-    @PodamExclude
     private List<ProjectDTO> projects = new ArrayList<>();
+    @PodamExclude
+    private List<FreelancerDTO> freelancers = new ArrayList<>();
 
     /**
      * @generated
@@ -64,20 +64,6 @@ public class SkillDTO {
     /**
      * @generated
      */
-    public List<FreelancerDTO> getFreelancers() {
-        return freelancers;
-    }
-
-    /**
-     * @generated
-     */
-    public void setFreelancers(List<FreelancerDTO> freelancers) {
-        this.freelancers = freelancers;
-    }
-
-    /**
-     * @generated
-     */
     public List<ProjectDTO> getProjects() {
         return projects;
     }
@@ -87,6 +73,20 @@ public class SkillDTO {
      */
     public void setProjects(List<ProjectDTO> projects) {
         this.projects = projects;
+    }
+
+    /**
+     * @generated
+     */
+    public List<FreelancerDTO> getFreelancers() {
+        return freelancers;
+    }
+
+    /**
+     * @generated
+     */
+    public void setFreelancers(List<FreelancerDTO> freelancers) {
+        this.freelancers = freelancers;
     }
 
 }

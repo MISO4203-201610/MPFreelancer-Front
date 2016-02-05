@@ -30,13 +30,13 @@ public class ProjectDTO {
     @PodamStrategyValue(DateStrategy.class)
     private Date startDate;
     @PodamExclude
-    private StatusDTO status;
+    private List<SkillDTO> expectedskills = new ArrayList<>();
     @PodamExclude
     private CategoryDTO category;
     @PodamExclude
     private ProjectSponsorDTO sponsor;
     @PodamExclude
-    private List<SkillDTO> expectedskills = new ArrayList<>();
+    private StatusDTO status;
 
     /**
      * @generated
@@ -139,20 +139,6 @@ public class ProjectDTO {
     /**
      * @generated
      */
-    public StatusDTO getStatus() {
-        return status;
-    }
-
-    /**
-     * @generated
-     */
-    public void setStatus(StatusDTO status) {
-        this.status = status;
-    }
-
-    /**
-     * @generated
-     */
     public CategoryDTO getCategory() {
         return category;
     }
@@ -176,6 +162,20 @@ public class ProjectDTO {
      */
     public void setSponsor(ProjectSponsorDTO sponsor) {
         this.sponsor = sponsor;
+    }
+
+    /**
+     * @generated
+     */
+    public StatusDTO getStatus() {
+        return status;
+    }
+
+    /**
+     * @generated
+     */
+    public void setStatus(StatusDTO status) {
+        this.status = status;
     }
 
     /**

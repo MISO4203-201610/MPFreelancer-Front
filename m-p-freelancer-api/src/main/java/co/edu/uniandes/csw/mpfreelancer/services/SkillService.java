@@ -19,10 +19,10 @@ import co.edu.uniandes.csw.mpfreelancer.api.ISkillLogic;
 import co.edu.uniandes.csw.mpfreelancer.dtos.SkillDTO;
 import co.edu.uniandes.csw.mpfreelancer.entities.SkillEntity;
 import co.edu.uniandes.csw.mpfreelancer.converters.SkillConverter;
-import co.edu.uniandes.csw.mpfreelancer.dtos.FreelancerDTO;
-import co.edu.uniandes.csw.mpfreelancer.converters.FreelancerConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
 import co.edu.uniandes.csw.mpfreelancer.converters.ProjectConverter;
+import co.edu.uniandes.csw.mpfreelancer.dtos.FreelancerDTO;
+import co.edu.uniandes.csw.mpfreelancer.converters.FreelancerConverter;
 
 /**
  * @generated
@@ -108,74 +108,6 @@ public class SkillService {
     }
 
     /**
-     * Obtiene una colección de instancias de FreelancerDTO asociadas a una
-     * instancia de Skill
-     *
-     * @param skillId Identificador de la instancia de Skill
-     * @return Colección de instancias de FreelancerDTO asociadas a la instancia de Skill
-     * @generated
-     */
-    @GET
-    @Path("{skillId: \\d+}/freelancers")
-    public List<FreelancerDTO> listFreelancers(@PathParam("skillId") Long skillId) {
-        return FreelancerConverter.listEntity2DTO(skillLogic.listFreelancers(skillId));
-    }
-
-    /**
-     * Obtiene una instancia de Freelancer asociada a una instancia de Skill
-     *
-     * @param skillId Identificador de la instancia de Skill
-     * @param freelancerId Identificador de la instancia de Freelancer
-     * @generated
-     */
-    @GET
-    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
-    public FreelancerDTO getFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
-        return FreelancerConverter.fullEntity2DTO(skillLogic.getFreelancers(skillId, freelancerId));
-    }
-
-    /**
-     * Asocia un Freelancer existente a un Skill
-     *
-     * @param skillId Identificador de la instancia de Skill
-     * @param freelancerId Identificador de la instancia de Freelancer
-     * @return Instancia de FreelancerDTO que fue asociada a Skill
-     * @generated
-     */
-    @POST
-    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
-    public FreelancerDTO addFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
-        return FreelancerConverter.fullEntity2DTO(skillLogic.addFreelancers(skillId, freelancerId));
-    }
-
-    /**
-     * Remplaza las instancias de Freelancer asociadas a una instancia de Skill
-     *
-     * @param skillId Identificador de la instancia de Skill
-     * @param freelancers Colección de instancias de FreelancerDTO a asociar a instancia de Skill
-     * @return Nueva colección de FreelancerDTO asociada a la instancia de Skill
-     * @generated
-     */
-    @PUT
-    @Path("{skillId: \\d+}/freelancers")
-    public List<FreelancerDTO> replaceFreelancers(@PathParam("skillId") Long skillId, List<FreelancerDTO> freelancers) {
-        return FreelancerConverter.listEntity2DTO(skillLogic.replaceFreelancers(skillId, FreelancerConverter.listDTO2Entity(freelancers)));
-    }
-
-    /**
-     * Desasocia un Freelancer existente de un Skill existente
-     *
-     * @param skillId Identificador de la instancia de Skill
-     * @param freelancerId Identificador de la instancia de Freelancer
-     * @generated
-     */
-    @DELETE
-    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
-    public void removeFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
-        skillLogic.removeFreelancers(skillId, freelancerId);
-    }
-
-    /**
      * Obtiene una colección de instancias de ProjectDTO asociadas a una
      * instancia de Skill
      *
@@ -241,5 +173,73 @@ public class SkillService {
     @Path("{skillId: \\d+}/projects/{projectId: \\d+}")
     public void removeProjects(@PathParam("skillId") Long skillId, @PathParam("projectId") Long projectId) {
         skillLogic.removeProjects(skillId, projectId);
+    }
+
+    /**
+     * Obtiene una colección de instancias de FreelancerDTO asociadas a una
+     * instancia de Skill
+     *
+     * @param skillId Identificador de la instancia de Skill
+     * @return Colección de instancias de FreelancerDTO asociadas a la instancia de Skill
+     * @generated
+     */
+    @GET
+    @Path("{skillId: \\d+}/freelancers")
+    public List<FreelancerDTO> listFreelancers(@PathParam("skillId") Long skillId) {
+        return FreelancerConverter.listEntity2DTO(skillLogic.listFreelancers(skillId));
+    }
+
+    /**
+     * Obtiene una instancia de Freelancer asociada a una instancia de Skill
+     *
+     * @param skillId Identificador de la instancia de Skill
+     * @param freelancerId Identificador de la instancia de Freelancer
+     * @generated
+     */
+    @GET
+    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
+    public FreelancerDTO getFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
+        return FreelancerConverter.fullEntity2DTO(skillLogic.getFreelancers(skillId, freelancerId));
+    }
+
+    /**
+     * Asocia un Freelancer existente a un Skill
+     *
+     * @param skillId Identificador de la instancia de Skill
+     * @param freelancerId Identificador de la instancia de Freelancer
+     * @return Instancia de FreelancerDTO que fue asociada a Skill
+     * @generated
+     */
+    @POST
+    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
+    public FreelancerDTO addFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
+        return FreelancerConverter.fullEntity2DTO(skillLogic.addFreelancers(skillId, freelancerId));
+    }
+
+    /**
+     * Remplaza las instancias de Freelancer asociadas a una instancia de Skill
+     *
+     * @param skillId Identificador de la instancia de Skill
+     * @param freelancers Colección de instancias de FreelancerDTO a asociar a instancia de Skill
+     * @return Nueva colección de FreelancerDTO asociada a la instancia de Skill
+     * @generated
+     */
+    @PUT
+    @Path("{skillId: \\d+}/freelancers")
+    public List<FreelancerDTO> replaceFreelancers(@PathParam("skillId") Long skillId, List<FreelancerDTO> freelancers) {
+        return FreelancerConverter.listEntity2DTO(skillLogic.replaceFreelancers(skillId, FreelancerConverter.listDTO2Entity(freelancers)));
+    }
+
+    /**
+     * Desasocia un Freelancer existente de un Skill existente
+     *
+     * @param skillId Identificador de la instancia de Skill
+     * @param freelancerId Identificador de la instancia de Freelancer
+     * @generated
+     */
+    @DELETE
+    @Path("{skillId: \\d+}/freelancers/{freelancerId: \\d+}")
+    public void removeFreelancers(@PathParam("skillId") Long skillId, @PathParam("freelancerId") Long freelancerId) {
+        skillLogic.removeFreelancers(skillId, freelancerId);
     }
 }

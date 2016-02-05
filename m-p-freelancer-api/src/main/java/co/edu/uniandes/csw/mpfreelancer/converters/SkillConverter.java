@@ -113,8 +113,8 @@ public abstract class SkillConverter {
     public static SkillDTO fullEntity2DTO(SkillEntity entity) {
         if (entity != null) {
             SkillDTO dto = basicEntity2DTO(entity);
-            dto.setFreelancers(FreelancerConverter.listEntity2DTO(entity.getFreelancers()));
             dto.setProjects(ProjectConverter.listEntity2DTO(entity.getProjects()));
+            dto.setFreelancers(FreelancerConverter.listEntity2DTO(entity.getFreelancers()));
             return dto;
         } else {
             return null;
@@ -132,8 +132,8 @@ public abstract class SkillConverter {
     public static SkillEntity fullDTO2Entity(SkillDTO dto) {
         if (dto != null) {
             SkillEntity entity = basicDTO2Entity(dto);
-            entity.setFreelancers(FreelancerConverter.listDTO2Entity(dto.getFreelancers()));
             entity.setProjects(ProjectConverter.listDTO2Entity(dto.getProjects()));
+            entity.setFreelancers(FreelancerConverter.listDTO2Entity(dto.getFreelancers()));
             return entity;
         } else {
             return null;

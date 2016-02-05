@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.mpfreelancer.services;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
+import static co.edu.uniandes.csw.auth.stormpath.Utils.getClient;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -16,11 +17,16 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.mpfreelancer.api.IProjectLogic;
+import co.edu.uniandes.csw.mpfreelancer.api.IProjectSponsorLogic;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
 import co.edu.uniandes.csw.mpfreelancer.entities.ProjectEntity;
 import co.edu.uniandes.csw.mpfreelancer.converters.ProjectConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.SkillDTO;
 import co.edu.uniandes.csw.mpfreelancer.converters.SkillConverter;
+import co.edu.uniandes.csw.mpfreelancer.entities.ProjectSponsorEntity;
+import com.stormpath.sdk.account.Account;
+import javax.servlet.http.HttpServletRequest;
+import org.eclipse.persistence.jpa.rs.util.JPARSLogger;
 
 /**
  * @generated
@@ -31,6 +37,8 @@ import co.edu.uniandes.csw.mpfreelancer.converters.SkillConverter;
 public class ProjectService {
 
     @Inject private IProjectLogic projectLogic;
+    @Inject private IProjectSponsorLogic projectSponsorLogic;
+    @Context private HttpServletRequest req;
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("maxRecords") private Integer maxRecords;
@@ -43,6 +51,19 @@ public class ProjectService {
      */
     @GET
     public List<ProjectDTO> getProjects() {
+        String accountHref = req.getRemoteUser();
+        if (accountHref != null) {
+            Account account = getClient().getResource(accountHref, Account.class);            
+            Integer id=(int)account.getCustomData().get("projectSponsor_id");            
+            return ProjectConverter.listEntity2DTO(projectSponsorLogic.listProjects(id.longValue()));
+        } else {
+            return null;
+        }
+    }
+    
+    @GET
+    @Path("/all")
+    public List<ProjectDTO> getAllProjects() {        
         if (page != null && maxRecords != null) {
             this.response.setIntHeader("X-Total-Count", projectLogic.countProjects());
             return ProjectConverter.listEntity2DTO(projectLogic.getProjects(page, maxRecords));
@@ -73,8 +94,19 @@ public class ProjectService {
     @POST
     @StatusCreated
     public ProjectDTO createProject(ProjectDTO dto) {
-        ProjectEntity entity = ProjectConverter.fullDTO2Entity(dto);
+        String accountHref = req.getRemoteUser();
+        if (accountHref != null) {
+            Account account = getClient().getResource(accountHref, Account.class);            
+            Integer id=(int)account.getCustomData().get("projectSponsor_id");  
+            ProjectSponsorEntity sponsor= new ProjectSponsorEntity();
+            sponsor.setId(id.longValue());
+            ProjectEntity entity = ProjectConverter.fullDTO2Entity(dto);
+            entity.setSponsor(sponsor);
         return ProjectConverter.fullEntity2DTO(projectLogic.createProject(entity));
+        }else{
+            return null;
+        }
+        
     }
 
     /**

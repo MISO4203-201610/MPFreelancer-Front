@@ -81,9 +81,9 @@ public abstract class ProjectConverter {
             dto.setDeadLine(entity.getDeadLine());
             dto.setPublicationDate(entity.getPublicationDate());
             dto.setStartDate(entity.getStartDate());
-            dto.setStatus(StatusConverter.refEntity2DTO(entity.getStatus()));
             dto.setCategory(CategoryConverter.refEntity2DTO(entity.getCategory()));
             dto.setSponsor(ProjectSponsorConverter.refEntity2DTO(entity.getSponsor()));
+            dto.setStatus(StatusConverter.refEntity2DTO(entity.getStatus()));
 
             return dto;
         } else {
@@ -110,9 +110,9 @@ public abstract class ProjectConverter {
             entity.setDeadLine(dto.getDeadLine());
             entity.setPublicationDate(dto.getPublicationDate());
             entity.setStartDate(dto.getStartDate());
-            entity.setStatus(StatusConverter.refDTO2Entity(dto.getStatus()));
             entity.setCategory(CategoryConverter.refDTO2Entity(dto.getCategory()));
             entity.setSponsor(ProjectSponsorConverter.refDTO2Entity(dto.getSponsor()));
+            entity.setStatus(StatusConverter.refDTO2Entity(dto.getStatus()));
 
             return entity;
         } else {

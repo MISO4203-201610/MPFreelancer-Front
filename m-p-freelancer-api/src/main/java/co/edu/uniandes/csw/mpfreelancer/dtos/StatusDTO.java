@@ -14,7 +14,7 @@ public class StatusDTO {
     private Long id;
     private String name;
     @PodamExclude
-    private List<ProjectDTO> project = new ArrayList<>();
+    private List<ProjectDTO> projects = new ArrayList<>();
 
     /**
      * @generated
@@ -47,15 +47,15 @@ public class StatusDTO {
     /**
      * @generated
      */
-    public List<ProjectDTO> getProject() {
-        return project;
+    public List<ProjectDTO> getProjects() {
+        return projects;
     }
 
     /**
      * @generated
      */
-    public void setProject(List<ProjectDTO> project) {
-        this.project = project;
+    public void setProjects(List<ProjectDTO> projects) {
+        this.projects = projects;
     }
 
 }

@@ -115,7 +115,7 @@ public class StatusService {
      */
     @GET
     @Path("{statusId: \\d+}/projects")
-    public List<ProjectDTO> listProject(@PathParam("statusId") Long statusId) {
+    public List<ProjectDTO> listProjects(@PathParam("statusId") Long statusId) {
         return ProjectConverter.listEntity2DTO(statusLogic.listProject(statusId));
     }
 
@@ -128,7 +128,7 @@ public class StatusService {
      */
     @GET
     @Path("{statusId: \\d+}/projects/{projectId: \\d+}")
-    public ProjectDTO getProject(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
+    public ProjectDTO getProjects(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
         return ProjectConverter.fullEntity2DTO(statusLogic.getProject(statusId, projectId));
     }
 
@@ -142,7 +142,7 @@ public class StatusService {
      */
     @POST
     @Path("{statusId: \\d+}/projects/{projectId: \\d+}")
-    public ProjectDTO addProject(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
+    public ProjectDTO addProjects(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
         return ProjectConverter.fullEntity2DTO(statusLogic.addProject(statusId, projectId));
     }
 
@@ -156,7 +156,7 @@ public class StatusService {
      */
     @PUT
     @Path("{statusId: \\d+}/projects")
-    public List<ProjectDTO> replaceProject(@PathParam("statusId") Long statusId, List<ProjectDTO> projects) {
+    public List<ProjectDTO> replaceProjects(@PathParam("statusId") Long statusId, List<ProjectDTO> projects) {
         return ProjectConverter.listEntity2DTO(statusLogic.replaceProject(statusId, ProjectConverter.listDTO2Entity(projects)));
     }
 
@@ -169,7 +169,7 @@ public class StatusService {
      */
     @DELETE
     @Path("{statusId: \\d+}/projects/{projectId: \\d+}")
-    public void removeProject(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
+    public void removeProjects(@PathParam("statusId") Long statusId, @PathParam("projectId") Long projectId) {
         statusLogic.removeProject(statusId, projectId);
     }
 }

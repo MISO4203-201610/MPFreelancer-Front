@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.mpfreelancer.tests;
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
+import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectSponsorDTO;
 import co.edu.uniandes.csw.mpfreelancer.dtos.SkillDTO;
 import co.edu.uniandes.csw.mpfreelancer.services.ProjectService;
 import java.io.File;
@@ -38,20 +39,20 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class ProjectTest {
 
-    private final int Ok = Status.OK.getStatusCode();
+    private final static int Ok = Status.OK.getStatusCode();
     private final int Created = Status.CREATED.getStatusCode();
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
     private final String projectPath = "projects";
     private final static List<ProjectDTO> oraculo = new ArrayList<>();
     private final String expectedskillsPath = "expectedskills";
     private final static List<SkillDTO> oraculoExpectedskills = new ArrayList<>();
-    private WebTarget target;
-    private final String apiPath = "api";
-    private final String username = System.getenv("USERNAME_USER");
-    private final String password = System.getenv("PASSWORD_USER");
+    private static WebTarget target;
+    private final static String apiPath = "api";
+    private final static String username = System.getenv("USERNAME_USER");
+    private final static String password = System.getenv("PASSWORD_USER");
 
     @ArquillianResource
-    private URL deploymentURL;
+    private static URL deploymentURL;
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
@@ -75,7 +76,7 @@ public class ProjectTest {
                 .setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
     }
 
-    private WebTarget createWebTarget() {
+    private static WebTarget createWebTarget() {
         ClientConfig config = new ClientConfig();
         config.register(LoggingFilter.class);
         return ClientBuilder.newClient(config).target(deploymentURL.toString()).path(apiPath);
@@ -83,7 +84,9 @@ public class ProjectTest {
 
     @BeforeClass
     public static void setUp() {
+        
         insertData();
+        
     }
 
     public static void insertData() {
@@ -98,9 +101,12 @@ public class ProjectTest {
             expectedskills.setId(i + 1L);
             oraculoExpectedskills.add(expectedskills);
         }
+        
+        
+        
     }
 
-    public Cookie login(String username, String password) {
+    public static Cookie login(String username, String password) {
         UserDTO user = new UserDTO();
         user.setUserName(username);
         user.setPassword(password);
@@ -124,7 +130,16 @@ public class ProjectTest {
     public void createProjectTest() throws IOException {
         ProjectDTO project = oraculo.get(0);
         Cookie cookieSessionId = login(username, password);
-        Response response = target.path(projectPath)
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        ProjectSponsorDTO projectSponsor = factory.manufacturePojo(ProjectSponsorDTO.class);
+        projectSponsor.setId(1L);
+        
+        Response response = target.path("projectSponsors")
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(projectSponsor, MediaType.APPLICATION_JSON));
+        
+        response = target.path(projectPath)
                 .request().cookie(cookieSessionId)
                 .post(Entity.entity(project, MediaType.APPLICATION_JSON));
         ProjectDTO  projectTest = (ProjectDTO) response.readEntity(ProjectDTO.class);
@@ -158,7 +173,17 @@ public class ProjectTest {
     @InSequence(3)
     public void listProjectTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
-        Response response = target.path(projectPath)
+        ProjectDTO projects = oraculo.get(0);
+        
+        
+        
+        
+        Response response = target.path("projectSponsors").path("1")
+                .path(projectPath).path(projects.getId().toString())
+                .request().cookie(cookieSessionId)
+                .post(Entity.entity(projects, MediaType.APPLICATION_JSON));
+        
+        response = target.path(projectPath)
                 .request().cookie(cookieSessionId).get();
         String listProject = response.readEntity(String.class);
         List<ProjectDTO> listProjectTest = new ObjectMapper().readValue(listProject, List.class);
