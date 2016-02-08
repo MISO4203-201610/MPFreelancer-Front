@@ -11,6 +11,8 @@
                     $rootScope.skill = false;
                     $rootScope.freelancer = false;
                     $rootScope.status = false;
+                    $rootScope.projectSponsorProfile = false;
+                    $rootScope.freelancerProfile = false;
                 }else {
                     var roles = $rootScope.roles = response.roles;
                     var isFreelance = false;
@@ -58,6 +60,11 @@
         };
         $rootScope.auth();
         $rootScope.$on('logged-in', function () {
+
+            $rootScope.auth();
+        });
+
+        $rootScope.$on('logged-out', function () {
 
             $rootScope.auth();
         });
