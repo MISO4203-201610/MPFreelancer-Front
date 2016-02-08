@@ -159,9 +159,23 @@ public class FreelancerTest {
         Assert.assertEquals(freelancerTest.getBithday(), oraculo.get(0).getBithday());
         Assert.assertEquals(freelancerTest.getPicture(), oraculo.get(0).getPicture());
     }
-
+    
     @Test
     @InSequence(3)
+    public void getCurrentFreelancer() {
+        Cookie cookieSessionId = login(username, password);
+        FreelancerDTO freelancerTest = target.path(freelancerPath)
+                .path("current")
+                .request().cookie(cookieSessionId).get(FreelancerDTO.class);
+        Assert.assertEquals(freelancerTest.getId(), oraculo.get(0).getId());
+        Assert.assertEquals(freelancerTest.getName(), oraculo.get(0).getName());
+        Assert.assertEquals(freelancerTest.getRate(), oraculo.get(0).getRate());
+        Assert.assertEquals(freelancerTest.getBithday(), oraculo.get(0).getBithday());
+        Assert.assertEquals(freelancerTest.getPicture(), oraculo.get(0).getPicture());
+    }
+
+    @Test
+    @InSequence(4)
     public void listFreelancerTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         Response response = target.path(freelancerPath)
@@ -173,7 +187,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(5)
     public void updateFreelancerTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         FreelancerDTO freelancer = oraculo.get(0);
@@ -194,7 +208,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(9)
+    @InSequence(10)
     public void deleteFreelancerTest() {
         Cookie cookieSessionId = login(username, password);
         FreelancerDTO freelancer = oraculo.get(0);
@@ -204,7 +218,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(6)
     public void addSkillsTest() {
         Cookie cookieSessionId = login(username, password);
 
@@ -233,7 +247,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(7)
     public void listSkillsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         FreelancerDTO freelancer = oraculo.get(0);
@@ -250,7 +264,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void getSkillsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         SkillDTO skills = oraculoSkills.get(0);
@@ -267,7 +281,7 @@ public class FreelancerTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void removeSkillsTest() {
         Cookie cookieSessionId = login(username, password);
 

@@ -190,9 +190,23 @@ public class ProjectTest {
         Assert.assertEquals(Ok, response.getStatus());
         Assert.assertEquals(1, listProjectTest.size());
     }
-
+    
     @Test
     @InSequence(4)
+    public void listAllProjectTest() throws IOException {
+        Cookie cookieSessionId = login(username, password);
+        ProjectDTO projects = oraculo.get(0);
+        
+        Response response = target.path(projectPath).path("all")
+                .request().cookie(cookieSessionId).get();
+        String listProject = response.readEntity(String.class);
+        List<ProjectDTO> listProjectTest = new ObjectMapper().readValue(listProject, List.class);
+        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(1, listProjectTest.size());
+    }
+
+    @Test
+    @InSequence(5)
     public void updateProjectTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectDTO project = oraculo.get(0);
@@ -217,7 +231,7 @@ public class ProjectTest {
     }
 
     @Test
-    @InSequence(9)
+    @InSequence(10)
     public void deleteProjectTest() {
         Cookie cookieSessionId = login(username, password);
         ProjectDTO project = oraculo.get(0);
@@ -227,7 +241,7 @@ public class ProjectTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(6)
     public void addExpectedskillsTest() {
         Cookie cookieSessionId = login(username, password);
 
@@ -256,7 +270,7 @@ public class ProjectTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(7)
     public void listExpectedskillsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectDTO project = oraculo.get(0);
@@ -273,7 +287,7 @@ public class ProjectTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void getExpectedskillsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         SkillDTO expectedskills = oraculoExpectedskills.get(0);
@@ -290,7 +304,7 @@ public class ProjectTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void removeExpectedskillsTest() {
         Cookie cookieSessionId = login(username, password);
 

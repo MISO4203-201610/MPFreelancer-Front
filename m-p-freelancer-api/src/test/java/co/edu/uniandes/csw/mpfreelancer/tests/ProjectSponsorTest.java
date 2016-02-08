@@ -147,9 +147,22 @@ public class ProjectSponsorTest {
         Assert.assertEquals(projectsponsorTest.getCompany(), oraculo.get(0).getCompany());
         Assert.assertEquals(projectsponsorTest.getPicture(), oraculo.get(0).getPicture());
     }
-
+    
     @Test
     @InSequence(3)
+    public void getCurrentProjectSponsor() {
+        Cookie cookieSessionId = login(username, password);
+        ProjectSponsorDTO projectsponsorTest = target.path(projectSponsorPath)
+                .path("current")
+                .request().cookie(cookieSessionId).get(ProjectSponsorDTO.class);
+        Assert.assertEquals(projectsponsorTest.getId(), oraculo.get(0).getId());
+        Assert.assertEquals(projectsponsorTest.getName(), oraculo.get(0).getName());
+        Assert.assertEquals(projectsponsorTest.getCompany(), oraculo.get(0).getCompany());
+        Assert.assertEquals(projectsponsorTest.getPicture(), oraculo.get(0).getPicture());
+    }
+
+    @Test
+    @InSequence(4)
     public void listProjectSponsorTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         Response response = target.path(projectSponsorPath)
@@ -161,7 +174,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(4)
+    @InSequence(5)
     public void updateProjectSponsorTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectSponsorDTO projectSponsor = oraculo.get(0);
@@ -180,7 +193,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(9)
+    @InSequence(10)
     public void deleteProjectSponsorTest() {
         Cookie cookieSessionId = login(username, password);
         ProjectSponsorDTO projectSponsor = oraculo.get(0);
@@ -190,7 +203,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(5)
+    @InSequence(6)
     public void addProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
@@ -223,7 +236,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(6)
+    @InSequence(7)
     public void listProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectSponsorDTO projectSponsor = oraculo.get(0);
@@ -240,7 +253,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(7)
+    @InSequence(8)
     public void getProjectsTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
         ProjectDTO projects = oraculoProjects.get(0);
@@ -261,7 +274,7 @@ public class ProjectSponsorTest {
     }
 
     @Test
-    @InSequence(8)
+    @InSequence(9)
     public void removeProjectsTest() {
         Cookie cookieSessionId = login(username, password);
 
