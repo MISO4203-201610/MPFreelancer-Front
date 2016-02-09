@@ -23,6 +23,8 @@ import co.edu.uniandes.csw.mpfreelancer.converters.ProjectSponsorConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.ProjectDTO;
 import co.edu.uniandes.csw.mpfreelancer.converters.ProjectConverter;
 import com.stormpath.sdk.account.Account;
+import com.stormpath.sdk.group.Group;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -32,6 +34,9 @@ import javax.servlet.http.HttpServletRequest;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ProjectSponsorService {
+    
+    private static final String PROYECT_SPONSOR_HREF = "https://api.stormpath.com/v1/groups/3irXbNcx6lMl2vCEONqH7I";    
+    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/3p6UM8157vb7qeHNip085I";    
 
     @Inject private IProjectSponsorLogic projectSponsorLogic;
     @Context private HttpServletRequest req;
@@ -47,11 +52,37 @@ public class ProjectSponsorService {
      */
     @GET
     public List<ProjectSponsorDTO> getProjectSponsors() {
-        if (page != null && maxRecords != null) {
-            this.response.setIntHeader("X-Total-Count", projectSponsorLogic.countProjectSponsors());
-            return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors(page, maxRecords));
+        boolean all = false;
+        String accountHref = req.getRemoteUser();
+        if (accountHref != null) {
+            Account account = getClient().getResource(accountHref, Account.class);
+            for (Group gr : account.getGroups()) {
+                switch (gr.getHref()) {
+                    case PROYECT_SPONSOR_HREF:
+                        all = false;
+                        break;
+                    case ADMIN_HREF:
+                        all = true;
+                        break;
+                }
+            }
+            if (all == true) {
+                if (page != null && maxRecords != null) {
+                    this.response.setIntHeader("X-Total-Count", projectSponsorLogic.countProjectSponsors());
+                    return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors(page, maxRecords));
+                }
+                return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors());
+            } else {
+                Integer id = (int) account.getCustomData().get("projectSponsor_id");
+                List<ProjectSponsorDTO> list = new ArrayList();
+                list.add(ProjectSponsorConverter.fullEntity2DTO(projectSponsorLogic.getProjectSponsor(id.longValue())));
+                return list;
+            }
+
+        } else {
+            return null;
         }
-        return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors());
+
     }
 
     /**

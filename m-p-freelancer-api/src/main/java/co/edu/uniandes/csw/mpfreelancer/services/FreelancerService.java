@@ -23,6 +23,8 @@ import co.edu.uniandes.csw.mpfreelancer.converters.FreelancerConverter;
 import co.edu.uniandes.csw.mpfreelancer.dtos.SkillDTO;
 import co.edu.uniandes.csw.mpfreelancer.converters.SkillConverter;
 import com.stormpath.sdk.account.Account;
+import com.stormpath.sdk.group.Group;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -32,6 +34,8 @@ import javax.servlet.http.HttpServletRequest;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class FreelancerService {
+    private static final String FREELANCER_HREF = "https://api.stormpath.com/v1/groups/3CjtuIMsdhm8TZoJV6AJXU";
+    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/3p6UM8157vb7qeHNip085I";    
 
     @Inject private IFreelancerLogic freelancerLogic;
     @Context private HttpServletRequest req;
@@ -47,11 +51,37 @@ public class FreelancerService {
      */
     @GET
     public List<FreelancerDTO> getFreelancers() {
-        if (page != null && maxRecords != null) {
-            this.response.setIntHeader("X-Total-Count", freelancerLogic.countFreelancers());
-            return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers(page, maxRecords));
+        boolean all = false;
+        String accountHref = req.getRemoteUser();
+        if (accountHref != null) {
+            Account account = getClient().getResource(accountHref, Account.class);
+            for (Group gr : account.getGroups()) {
+                switch (gr.getHref()) {
+                    case FREELANCER_HREF:
+                        all = false;
+                        break;
+                    case ADMIN_HREF:
+                        all = true;
+                        break;
+                }
+            }
+            if (all == true) {
+                if (page != null && maxRecords != null) {
+                    this.response.setIntHeader("X-Total-Count", freelancerLogic.countFreelancers());
+                    return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers(page, maxRecords));
+                }
+                return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers());
+            } else {
+                Integer id = (int) account.getCustomData().get("freelancer_id");
+                List<FreelancerDTO> list = new ArrayList();
+                list.add(FreelancerConverter.fullEntity2DTO(freelancerLogic.getFreelancer(id.longValue())));
+                return list;
+            }
+
+        } else {
+            return null;
         }
-        return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers());
+
     }
 
     /**
