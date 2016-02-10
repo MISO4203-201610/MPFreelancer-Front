@@ -16,43 +16,40 @@
                     } else {
                         var roles = $rootScope.roles = response.roles;
                         var isFreelance = false;
-                        for (var i = 0; i < roles.length; i++) {
-                            switch (roles[i]) {
-                                case 'freelancer':
-                                    isFreelance = true;
-                                    $rootScope.skill = true;
-                                    $rootScope.freelancer = true;
-                                    $rootScope.freelancerProfile = true;
-                                    $rootScope.category = false;
-                                    $rootScope.project = false;
-                                    $rootScope.projectSponsor = false;
-                                    $rootScope.projectSponsorProfile = false;
-                                    $rootScope.status = false;
-                                    break;
-                                case 'projectSponsor':
-                                    $rootScope.category = true;
-                                    $rootScope.project = true;
-                                    $rootScope.projectSponsor = true;
-                                    $rootScope.projectSponsorProfile = true;
-                                    $rootScope.skill = true;
-                                    if (isFreelance === false) {
-                                        $rootScope.freelancer = false;
-                                        $rootScope.freelancerProfile = false;
-                                    }
-                                    $rootScope.status = false;
-                                    break;
-                                case 'admin':
-                                    $rootScope.category = true;
-                                    $rootScope.project = false;
-                                    $rootScope.projectSponsor = true;
-                                    $rootScope.skill = true;
-                                    $rootScope.freelancer = true;
-                                    $rootScope.status = true;
-                                    $rootScope.projectSponsorProfile = false;
-                                    $rootScope.freelancerProfile = false;
-                                    break;
-                            }
+                        if (roles.indexOf("freelancer") !== -1) {
+                            isFreelance = true;
+                            $rootScope.skill = true;
+                            $rootScope.freelancer = true;
+                            $rootScope.freelancerProfile = true;
+                            $rootScope.category = false;
+                            $rootScope.project = false;
+                            $rootScope.projectSponsor = false;
+                            $rootScope.projectSponsorProfile = false;
+                            $rootScope.status = false;
                         }
+                        if (roles.indexOf("projectSponsor") !== -1) {
+                            $rootScope.category = true;
+                            $rootScope.project = true;
+                            $rootScope.projectSponsor = true;
+                            $rootScope.projectSponsorProfile = true;
+                            $rootScope.skill = true;
+                            if (isFreelance === false) {
+                                $rootScope.freelancer = false;
+                                $rootScope.freelancerProfile = false;
+                            }
+                            $rootScope.status = false;
+                        }
+                        if (roles.indexOf("admin") !== -1) {
+                            $rootScope.category = true;
+                            $rootScope.project = false;
+                            $rootScope.projectSponsor = true;
+                            $rootScope.skill = true;
+                            $rootScope.freelancer = true;
+                            $rootScope.status = true;
+                            $rootScope.projectSponsorProfile = false;
+                            $rootScope.freelancerProfile = false;
+                        }
+
                     }
 
 

@@ -13,6 +13,11 @@
                 url: url
             });
             this.fetchRecords();
+            this.globalActions.create = {
+                show: function () {
+                    return false;
+                }
+            };
         }]);
 
     mod.controller('SponsorprojectsCtrl', ['CrudCreator', '$scope',
