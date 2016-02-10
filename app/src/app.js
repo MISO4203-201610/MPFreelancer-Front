@@ -87,5 +87,48 @@
                 successState: 'projectList'
             });
             auth.setRoles({'freelancer': 'freelancer', 'projectSponsor': 'projectSponsor'});
+            auth.setRoles({
+                'freelancer': [{
+                        id: 'freelancer',
+                        label: 'Freelancer',
+                        icon: 'list-alt',
+                        state: 'freelancer'
+                    }, {
+                        id: 'freelancerProfile',
+                        label: 'Freelancer Profile',
+                        icon: 'list-alt',
+                        state: 'freelancerProfile'
+                    }, {
+                        id: 'skill',
+                        label: 'Skill',
+                        icon: 'list-alt',
+                        state: 'skill'
+                    }],
+                'projectSponsor': [{
+                        id: 'category',
+                        label: 'Category',
+                        icon: 'list-alt',
+                        state: 'category'
+                    }, {
+                        id: 'project',
+                        label: 'Project',
+                        icon: 'list-alt',
+                        state: 'project'
+                    }, {
+                        id: 'projectSponsor',
+                        label: 'Project Sponsor',
+                        icon: 'list-alt',
+                        state: 'projectSponsor'
+                    }, {
+                        id: 'projectSponsorProfile',
+                        label: 'Project Sponsor Profile',
+                        icon: 'list-alt',
+                        state: 'projectSponsorProfile'
+                    }, {
+                        id: 'skill',
+                        label: 'Skill',
+                        icon: 'list-alt',
+                        state: 'skill'
+                    }]});
         }]);
 })(window.angular);
