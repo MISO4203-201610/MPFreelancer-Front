@@ -52,36 +52,27 @@ public class ProjectSponsorService {
      */
     @GET
     public List<ProjectSponsorDTO> getProjectSponsors() {
-        boolean all = false;
         String accountHref = req.getRemoteUser();
         if (accountHref != null) {
             Account account = getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
                 switch (gr.getHref()) {
-                    case PROYECT_SPONSOR_HREF:
-                        all = false;
-                        break;
                     case ADMIN_HREF:
-                        all = true;
-                        break;
+                        if (page != null && maxRecords != null) {
+                        this.response.setIntHeader("X-Total-Count", projectSponsorLogic.countProjectSponsors());
+                        return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors(page, maxRecords));
+                    }
+                        return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors());
+                    case PROYECT_SPONSOR_HREF:
+                        Integer id = (int) account.getCustomData().get("projectSponsor_id");
+                        List<ProjectSponsorDTO> list = new ArrayList();
+                        list.add(ProjectSponsorConverter.fullEntity2DTO(projectSponsorLogic.getProjectSponsor(id.longValue())));
+                        return list;                    
                 }
-            }
-            if (all == true) {
-                if (page != null && maxRecords != null) {
-                    this.response.setIntHeader("X-Total-Count", projectSponsorLogic.countProjectSponsors());
-                    return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors(page, maxRecords));
-                }
-                return ProjectSponsorConverter.listEntity2DTO(projectSponsorLogic.getProjectSponsors());
-            } else {
-                Integer id = (int) account.getCustomData().get("projectSponsor_id");
-                List<ProjectSponsorDTO> list = new ArrayList();
-                list.add(ProjectSponsorConverter.fullEntity2DTO(projectSponsorLogic.getProjectSponsor(id.longValue())));
-                return list;
             }
 
-        } else {
-            return null;
-        }
+        } 
+        return null;
 
     }
 

@@ -51,36 +51,27 @@ public class FreelancerService {
      */
     @GET
     public List<FreelancerDTO> getFreelancers() {
-        boolean all = false;
         String accountHref = req.getRemoteUser();
         if (accountHref != null) {
             Account account = getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
                 switch (gr.getHref()) {
-                    case FREELANCER_HREF:
-                        all = false;
-                        break;
                     case ADMIN_HREF:
-                        all = true;
-                        break;
+                        if (page != null && maxRecords != null) {
+                        this.response.setIntHeader("X-Total-Count", freelancerLogic.countFreelancers());
+                        return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers(page, maxRecords));
+                        }
+                        return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers());                    
+                    case FREELANCER_HREF:                     
+                        Integer id = (int) account.getCustomData().get("freelancer_id");
+                        List<FreelancerDTO> list = new ArrayList();
+                        list.add(FreelancerConverter.fullEntity2DTO(freelancerLogic.getFreelancer(id.longValue())));
+                        return list;
                 }
-            }
-            if (all == true) {
-                if (page != null && maxRecords != null) {
-                    this.response.setIntHeader("X-Total-Count", freelancerLogic.countFreelancers());
-                    return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers(page, maxRecords));
-                }
-                return FreelancerConverter.listEntity2DTO(freelancerLogic.getFreelancers());
-            } else {
-                Integer id = (int) account.getCustomData().get("freelancer_id");
-                List<FreelancerDTO> list = new ArrayList();
-                list.add(FreelancerConverter.fullEntity2DTO(freelancerLogic.getFreelancer(id.longValue())));
-                return list;
             }
 
-        } else {
-            return null;
-        }
+        } 
+        return null;
 
     }
 
