@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.mpfreelancer.services;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -72,6 +73,7 @@ public class SkillService {
      * @return Objeto de SkillDTO con los datos nuevos y su ID.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R005")
     @POST
     @StatusCreated
     public SkillDTO createSkill(SkillDTO dto) {
@@ -87,6 +89,7 @@ public class SkillService {
      * @return Instancia de SkillDTO con los datos actualizados.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R006")
     @PUT
     @Path("{id: \\d+}")
     public SkillDTO updateSkill(@PathParam("id") Long id, SkillDTO dto) {
@@ -101,6 +104,7 @@ public class SkillService {
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R007")
     @DELETE
     @Path("{id: \\d+}")
     public void deleteSkill(@PathParam("id") Long id) {

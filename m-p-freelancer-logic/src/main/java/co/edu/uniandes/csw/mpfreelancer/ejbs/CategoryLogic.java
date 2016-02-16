@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.mpfreelancer.ejbs;
 
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import co.edu.uniandes.csw.mpfreelancer.api.ICategoryLogic;
 import co.edu.uniandes.csw.mpfreelancer.entities.CategoryEntity;
 import co.edu.uniandes.csw.mpfreelancer.persistence.CategoryPersistence;
@@ -53,6 +54,7 @@ public class CategoryLogic implements ICategoryLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R011")
     @Override
     public CategoryEntity createCategory(CategoryEntity entity) {
         persistence.create(entity);
@@ -62,6 +64,7 @@ public class CategoryLogic implements ICategoryLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R012")
     @Override
     public CategoryEntity updateCategory(CategoryEntity entity) {
         CategoryEntity newEntity = entity;
@@ -73,6 +76,7 @@ public class CategoryLogic implements ICategoryLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R013")
     @Override
     public void deleteCategory(Long id) {
         persistence.delete(id);

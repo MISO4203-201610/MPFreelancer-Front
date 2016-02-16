@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.mpfreelancer.ejbs;
 
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import co.edu.uniandes.csw.mpfreelancer.api.ISkillLogic;
 import co.edu.uniandes.csw.mpfreelancer.entities.SkillEntity;
 import co.edu.uniandes.csw.mpfreelancer.persistence.SkillPersistence;
@@ -54,6 +55,7 @@ public class SkillLogic implements ISkillLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R005")
     @Override
     public SkillEntity createSkill(SkillEntity entity) {
         persistence.create(entity);
@@ -63,6 +65,7 @@ public class SkillLogic implements ISkillLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R006")
     @Override
     public SkillEntity updateSkill(SkillEntity entity) {
         SkillEntity newEntity = entity;
@@ -75,6 +78,7 @@ public class SkillLogic implements ISkillLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R007")
     @Override
     public void deleteSkill(Long id) {
         persistence.delete(id);

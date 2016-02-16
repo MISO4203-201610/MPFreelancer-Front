@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.mpfreelancer.ejbs;
 
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import co.edu.uniandes.csw.mpfreelancer.api.IProjectLogic;
 import co.edu.uniandes.csw.mpfreelancer.entities.ProjectEntity;
 import co.edu.uniandes.csw.mpfreelancer.persistence.ProjectPersistence;
@@ -50,6 +51,7 @@ public class ProjectLogic implements IProjectLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R008")
     @Override
     public ProjectEntity createProject(ProjectEntity entity) {
         persistence.create(entity);
@@ -59,6 +61,7 @@ public class ProjectLogic implements IProjectLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R009")
     @Override
     public ProjectEntity updateProject(ProjectEntity entity) {
         ProjectEntity newEntity = entity;
@@ -70,6 +73,7 @@ public class ProjectLogic implements IProjectLogic {
     /**
      * @generated
      */
+    @MPLoCAnn(tier = "Backend", reqId = "R010")
     @Override
     public void deleteProject(Long id) {
         persistence.delete(id);

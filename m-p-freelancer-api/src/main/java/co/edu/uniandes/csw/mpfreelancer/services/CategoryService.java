@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.mpfreelancer.services;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +71,7 @@ public class CategoryService {
      * @return Objeto de CategoryDTO con los datos nuevos y su ID.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R011")
     @POST
     @StatusCreated
     public CategoryDTO createCategory(CategoryDTO dto) {
@@ -85,6 +87,7 @@ public class CategoryService {
      * @return Instancia de CategoryDTO con los datos actualizados.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R012")
     @PUT
     @Path("{id: \\d+}")
     public CategoryDTO updateCategory(@PathParam("id") Long id, CategoryDTO dto) {
@@ -99,6 +102,7 @@ public class CategoryService {
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R013")
     @DELETE
     @Path("{id: \\d+}")
     public void deleteCategory(@PathParam("id") Long id) {

@@ -39,6 +39,10 @@
             <version>2.6.1</version>
         </dependency>
         <dependency>
+            <groupId>co.edu.uniandes.csw</groupId>
+            <artifactId>MPLoCAnn</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>

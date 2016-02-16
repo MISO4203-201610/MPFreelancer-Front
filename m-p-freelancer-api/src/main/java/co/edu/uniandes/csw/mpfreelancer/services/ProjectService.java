@@ -2,6 +2,7 @@ package co.edu.uniandes.csw.mpfreelancer.services;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
 import static co.edu.uniandes.csw.auth.stormpath.Utils.getClient;
+import co.edu.uniandes.csw.mp.ann.MPLoCAnn;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,6 @@ import co.edu.uniandes.csw.mpfreelancer.converters.SkillConverter;
 import co.edu.uniandes.csw.mpfreelancer.entities.ProjectSponsorEntity;
 import com.stormpath.sdk.account.Account;
 import javax.servlet.http.HttpServletRequest;
-import org.eclipse.persistence.jpa.rs.util.JPARSLogger;
 
 /**
  * @generated
@@ -91,6 +91,7 @@ public class ProjectService {
      * @return Objeto de ProjectDTO con los datos nuevos y su ID.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R008")
     @POST
     @StatusCreated
     public ProjectDTO createProject(ProjectDTO dto) {
@@ -117,6 +118,7 @@ public class ProjectService {
      * @return Instancia de ProjectDTO con los datos actualizados.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R009")
     @PUT
     @Path("{id: \\d+}")
     public ProjectDTO updateProject(@PathParam("id") Long id, ProjectDTO dto) {
@@ -131,6 +133,7 @@ public class ProjectService {
      * @param id Identificador de la instancia a eliminar.
      * @generated
      */
+    @MPLoCAnn(tier = "Service", reqId = "R010")
     @DELETE
     @Path("{id: \\d+}")
     public void deleteProject(@PathParam("id") Long id) {
