@@ -37,6 +37,9 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy = "freelancers")
     private List<SkillEntity> skills = new ArrayList<>();
 
+    @PodamExclude
+    @ManyToMany
+    private List<FreelancerTeamEntity> freelancerTeams = new ArrayList<>();
     /**
      * @generated
      */
@@ -105,5 +108,19 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
      */
     public void setSkills(List<SkillEntity> skills) {
         this.skills = skills;
+    }
+    
+    /**
+     * @generated
+     */
+    public List<FreelancerTeamEntity> getFreelancerTeams() {
+        return freelancerTeams;
+    }
+
+    /**
+     * @generated
+     */
+    public void setFreelancers(List<FreelancerTeamEntity> freelancerTeams) {
+        this.freelancerTeams = freelancerTeams;
     }
 }
