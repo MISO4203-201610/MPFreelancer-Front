@@ -3,8 +3,6 @@ package co.edu.uniandes.csw.mpfreelancer.dtos;
 import javax.xml.bind.annotation.XmlRootElement;
 import uk.co.jemos.podam.common.PodamExclude;
 import java.util.Date;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import co.edu.uniandes.csw.auth.model.DateAdapter;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 import co.edu.uniandes.csw.crud.api.podam.strategy.DateStrategy;
 import java.util.List;
@@ -20,13 +18,10 @@ public class ProjectDTO {
     private String name;
     private String description;
     private Integer price;
-    @XmlJavaTypeAdapter(DateAdapter.class)
     @PodamStrategyValue(DateStrategy.class)
     private Date deadLine;
-    @XmlJavaTypeAdapter(DateAdapter.class)
     @PodamStrategyValue(DateStrategy.class)
     private Date publicationDate;
-    @XmlJavaTypeAdapter(DateAdapter.class)
     @PodamStrategyValue(DateStrategy.class)
     private Date startDate;
     @PodamExclude

@@ -26,11 +26,10 @@ public class UserService extends AuthService {
     
     @Inject private IFreelancerLogic freelancerLogic;
     @Inject private IProjectSponsorLogic sponsorLogic;
-    private static final String FREELANCER_HREF = "https://api.stormpath.com/v1/groups/3CjtuIMsdhm8TZoJV6AJXU";
-    private static final String PROYECT_SPONSOR_HREF = "https://api.stormpath.com/v1/groups/3irXbNcx6lMl2vCEONqH7I";    
+    private static final String FREELANCER_HREF = "https://api.stormpath.com/v1/groups/mNePGgZXIo2wW01EvWRzl";
+    private static final String PROYECT_SPONSOR_HREF = "https://api.stormpath.com/v1/groups/w94UQuPl5386Zk91Numiv";    
     private static final String FREELANCER_CD = "freelancer_id";
     private static final String PROYECT_SPONSOR_CD = "projectSponsor_id";
-    private Object projectSponsorLogic;
     
     @Override
     public void register(UserDTO user) {
