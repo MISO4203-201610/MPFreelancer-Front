@@ -12,6 +12,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToMany;
 import java.util.List;
 import java.util.ArrayList;
+import javax.persistence.ManyToOne;
 
 /**
  * @generated
@@ -31,6 +32,24 @@ public class FreelancerTeamEntity extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy = "freelancerTeams")
     private List<FreelancerEntity> freelancers = new ArrayList<>();
 
+    @PodamExclude
+    @ManyToOne
+    private FreelancerEntity owner;
+
+     /**
+     * @generated
+     */
+    public FreelancerEntity getOwner(){
+        return owner;
+    }
+
+    /**
+     * @generated
+     */
+    public void setOwner(FreelancerEntity owner){
+        this.owner = owner;
+    }
+    
     /**
      * @generated
      */

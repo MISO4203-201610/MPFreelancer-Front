@@ -40,6 +40,24 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<FreelancerTeamEntity> freelancerTeams = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FreelancerTeamEntity> myTeams = new ArrayList<>();
+    
+    /**
+     * @generated
+     */
+    public List<FreelancerTeamEntity> getMyTeams() {
+        return myTeams;
+    }
+
+    /**
+     * @generated
+     */
+    public void setMyTeams(List<FreelancerTeamEntity> myTeams) {
+        this.myTeams = myTeams;
+    }
+    
     /**
      * @generated
      */
