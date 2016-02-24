@@ -27,8 +27,6 @@ public class FreelancerTeamEntity extends BaseEntity implements Serializable {
 
     private String picture;
 
-    private String name;
-    
     @PodamExclude
     @ManyToMany(mappedBy = "freelancerTeams")
     private List<FreelancerEntity> freelancers = new ArrayList<>();
