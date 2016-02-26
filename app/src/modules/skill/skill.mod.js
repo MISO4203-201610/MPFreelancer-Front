@@ -14,6 +14,11 @@
                 displayName: 'Description',
                 type: 'String',
                 required: true
+            }, {
+                name: 'level',
+                displayName: 'Level',
+                type: 'String',
+                required: true
             }],
         childs: [{
                 name: 'freelancers',
