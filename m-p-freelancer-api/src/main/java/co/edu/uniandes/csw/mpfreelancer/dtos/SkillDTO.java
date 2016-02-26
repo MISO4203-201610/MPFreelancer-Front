@@ -14,11 +14,13 @@ public class SkillDTO {
     private Long id;
     private String name;
     private String description;
+    private String level;
+
     @PodamExclude
     private List<ProjectDTO> projects = new ArrayList<>();
     @PodamExclude
     private List<FreelancerDTO> freelancers = new ArrayList<>();
-
+    
     /**
      * @generated
      */
@@ -60,7 +62,15 @@ public class SkillDTO {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public String getLevel() {
+        return level;
+    }
 
+    public void setLevel(String level) {
+        this.level = level;
+    }
+    
     /**
      * @generated
      */
