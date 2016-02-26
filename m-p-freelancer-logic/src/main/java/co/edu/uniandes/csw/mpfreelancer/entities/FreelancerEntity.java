@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
 
 /**
  * @generated
@@ -33,6 +34,9 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EducationEntity> titles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BlogEntryEntity> blogEntries = new ArrayList<>();
+     
     @PodamExclude
     @ManyToMany(mappedBy = "freelancers")
     private List<SkillEntity> skills = new ArrayList<>();
@@ -43,6 +47,72 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FreelancerTeamEntity> myTeams = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WorkExperienceEntity> workExperiences = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AgreementEntity> agreements = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "freelancer")
+    private CurriculumEntity curriculum;
+    
+    /**
+     * @generated
+     */
+    public List<WorkExperienceEntity> getWorkExperiences() {
+        return workExperiences;
+    }
+
+    /**
+     * @generated
+     */
+    public void setWorkExperiences(List<WorkExperienceEntity> workExperiences) {
+        this.workExperiences = workExperiences;
+    }
+    
+    /**
+     * @generated
+     */
+    public List<AgreementEntity> getAgreements() {
+        return agreements;
+    }
+
+    /**
+     * @generated
+     */
+    public void setAgreements(List<AgreementEntity> agreements) {
+        this.agreements = agreements;
+    }
+    
+    /**
+     * @generated
+     */
+    public CurriculumEntity getCurriculum() {
+        return curriculum;
+    }
+
+    /**
+     * @generated
+     */
+    public void setCurriculum(CurriculumEntity curriculum) {
+        this.curriculum = curriculum;
+    }
+    
+    
+    /**
+     * @generated
+     */
+    public List<BlogEntryEntity> getBlogEntries() {
+        return blogEntries;
+    }
+
+    /**
+     * @generated
+     */
+    public void setBlogEntries(List<BlogEntryEntity> blogEntries) {
+        this.blogEntries = blogEntries;
+    }
     
     /**
      * @generated
