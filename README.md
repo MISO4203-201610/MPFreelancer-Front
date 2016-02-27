@@ -1,6 +1,6 @@
 
------------------------------SOFTWARE DESIGN--------------------------------
-------Integrante-----------------Rol-------------------Login Uniandes-------
+-----------------------------SOFTWARE DESIGN------------
+-----------------------------SOFTWARE DESIGN------------
 ----------------------------------------------------------------------------
     Alex Chacon           Lider del Grupo               av.chacon10
     Camilo Niño           Líder de Desarrollo           jc.nino11
