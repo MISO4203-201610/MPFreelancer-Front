@@ -11,7 +11,8 @@
         'authModule',
         'ui.router',
         'ngCrud',
-        'roleModule'
+        'roleModule',
+        'curriculumModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -52,6 +53,12 @@
                     url: '/skill',
                     templateUrl: tplUrl,
                     controller: 'skillCtrl',
+                    controllerAs: alias
+                })
+                .state('curriculum', {
+                    url: '/curriculum',
+                    templateUrl: tplUrl,
+                    controller: 'curriculumCtrl',
                     controllerAs: alias
                 })
                 .state('status', {
@@ -103,6 +110,11 @@
                         label: 'Skill',
                         icon: 'list-alt',
                         state: 'skill'
+                    }, {
+                        id: 'curriculum',
+                        label: 'Curriculum',
+                        icon: 'list-alt',
+                        state: 'curriculum'
                     }],
                 'projectSponsor': [{
                         id: 'category',

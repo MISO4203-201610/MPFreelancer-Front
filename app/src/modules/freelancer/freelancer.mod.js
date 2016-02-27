@@ -37,5 +37,11 @@
                 //template: '', //override generic template
                 ctrl: 'FreelancersskillsCtrl',
                 owned: false
+            }, {
+                name: 'curriculums',
+                displayName: 'Curriculums',
+                //template: '', //override generic template
+                ctrl: 'FreelancerscurriculumsCtrl',
+                owned: true
             }]});
 })(window.angular);
