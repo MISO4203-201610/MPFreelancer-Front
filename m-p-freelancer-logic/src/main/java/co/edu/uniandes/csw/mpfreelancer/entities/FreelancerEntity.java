@@ -34,7 +34,7 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EducationEntity> titles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BlogEntryEntity> blogEntries = new ArrayList<>();
      
     @PodamExclude
@@ -45,13 +45,13 @@ public class FreelancerEntity extends BaseEntity implements Serializable {
     @ManyToMany
     private List<FreelancerTeamEntity> freelancerTeams = new ArrayList<>();
     
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FreelancerTeamEntity> myTeams = new ArrayList<>();
     
-    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<WorkExperienceEntity> workExperiences = new ArrayList<>();
     
-    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "freelancer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AgreementEntity> agreements = new ArrayList<>();
     
     @OneToOne(mappedBy = "freelancer")
