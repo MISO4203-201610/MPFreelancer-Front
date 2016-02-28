@@ -49,10 +49,7 @@
                             $rootScope.projectSponsorProfile = false;
                             $rootScope.freelancerProfile = false;
                         }
-
                     }
-
-
                 });
             };
         $rootScope.auth();

@@ -11,7 +11,8 @@
         'authModule',
         'ui.router',
         'ngCrud',
-        'roleModule'
+        'roleModule',
+        'agreementModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -77,6 +78,12 @@
                     templateUrl: "src/modules/project/projectList.tpl.html",
                     controller: 'projectListCtrl',
                     controllerAs: alias
+                })
+                .state('projectSponsorProfile', {
+                    url: '/projectSponsorProfile',
+                    templateUrl: "src/modules/projectSponsor/projectSponsorProfile.tpl.html",
+                    controller: 'projectSponsorProfileCtrl',
+                    controllerAs: alias
                 });
             $urlRouterProvider.otherwise('/');
         }]);
@@ -86,7 +93,7 @@
                 apiUrl: 'http://localhost:8080/m-p-freelancer-api/api/users/',
                 successState: 'projectList'
             });
-            auth.setRoles({'freelancer': 'freelancer', 'projectSponsor': 'projectSponsor'});
+
             auth.setRoles({
                 'freelancer': [{
                         id: 'freelancer',
@@ -129,6 +136,18 @@
                         label: 'Skill',
                         icon: 'list-alt',
                         state: 'skill'
-                    }]});
+                    }],
+                'admin': [{
+                        id: 'freelancer',
+                        label: 'Freelancer',
+                        icon: 'list-alt',
+                        state: 'freelancer'
+                    }, {
+                        id: 'skill',
+                        label: 'Skill',
+                        icon: 'list-alt',
+                        state: 'skill'
+                    }]
+            });
         }]);
 })(window.angular);

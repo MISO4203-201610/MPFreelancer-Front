@@ -60,4 +60,15 @@
             $scope.getCurrentFreelancer();
 
         }]);
+    mod.controller('FreelancersagreementsCtrl', ['CrudCreator', '$scope', 'freelancerModel',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'agreements',
+                displayName: 'Agreements',
+                parent: 'author',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
 })(window.angular);
