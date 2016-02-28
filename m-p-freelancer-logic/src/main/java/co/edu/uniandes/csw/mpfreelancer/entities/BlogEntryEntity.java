@@ -18,16 +18,13 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class BlogEntryEntity extends BaseEntity implements Serializable {
 
     private String title;
-    
     private String subject;
+    private String description;
+    private String content;
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date publicationDate;
-
-    private String description;
-    
-    private String content;
 
     @PodamExclude
     @ManyToOne

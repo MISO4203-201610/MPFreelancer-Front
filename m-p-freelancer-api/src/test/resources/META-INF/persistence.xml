@@ -9,6 +9,13 @@
         <class>co.edu.uniandes.csw.mpfreelancer.entities.ProjectSponsorEntity</class>
         <class>co.edu.uniandes.csw.mpfreelancer.entities.SkillEntity</class>
         <class>co.edu.uniandes.csw.mpfreelancer.entities.StatusEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.AgreementEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.ArtifactEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.BlogEntryEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.CurriculumEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.FreelancerTeamEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.WorkExperienceEntity</class>
+        <class>co.edu.uniandes.csw.mpfreelancer.entities.ProjectSprintEntity</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>

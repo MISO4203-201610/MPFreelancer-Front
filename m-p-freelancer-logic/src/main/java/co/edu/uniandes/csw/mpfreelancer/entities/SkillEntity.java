@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class SkillEntity extends BaseEntity implements Serializable {
 
     private String description;
+    private String level;
 
     @PodamExclude
     @ManyToMany
@@ -23,7 +24,15 @@ public class SkillEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany(mappedBy = "expectedskills")
     private List<ProjectEntity> projects = new ArrayList<>();
+    
+    public String getLevel() {
+        return level;
+    }
 
+    public void setLevel(String level) {
+        this.level = level;
+    }
+    
     /**
      * @generated
      */
