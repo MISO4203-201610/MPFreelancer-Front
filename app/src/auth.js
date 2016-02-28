@@ -19,6 +19,7 @@
                         if (roles.indexOf("freelancer") !== -1) {
                             isFreelance = true;
                             $rootScope.skill = true;
+                            $rootScope.curriculum = true;
                             $rootScope.freelancer = true;
                             $rootScope.freelancerProfile = true;
                             $rootScope.category = false;

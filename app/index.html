@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="mainApp">
     <head>
-        <title>MP  Freelancer</title>
+        <title>MPFreelancer</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,6 +43,7 @@
         <script src="src/app.js"></script>
         <script src="src/modules/agreement/agreement.mod.js"></script>
         <script src="src/modules/category/category.mod.js"></script>
+        <script src="src/modules/curriculum/curriculum.mod.js"></script>
         <script src="src/modules/education/education.mod.js"></script>
         <script src="src/modules/freelancer/freelancer.mod.js"></script>
         <script src="src/modules/project/project.mod.js"></script>
@@ -52,6 +53,7 @@
         <script src="src/auth.js"></script>
         <script src="src/modules/agreement/agreement.ctrl.js"></script>
         <script src="src/modules/category/category.ctrl.js"></script>
+        <script src="src/modules/curriculum/curriculum.ctrl.js"></script>
         <script src="src/modules/freelancer/freelancer.ctrl.js"></script>
         <script src="src/modules/project/project.ctrl.js"></script>
         <script src="src/modules/projectSponsor/projectSponsor.ctrl.js"></script>
@@ -88,6 +90,7 @@
                                 <li ng-if="projectSponsor"><a ui-sref="projectSponsor">Project Sponsor</a></li>
                                 <li ng-if="projectSponsorProfile"><a ui-sref="projectSponsorProfile">Project Sponsor Profile</a></li>
                                 <li ng-if="skill"><a ui-sref="skill">Skill</a></li>
+                                <li ng-if="curriculum"><a ui-sref="curriculum">Curriculum</a></li>
                                 <li ng-if="status"><a ui-sref="status">Status</a></li>
                             </ul>
                             <ul  class="nav navbar-nav navbar-right">

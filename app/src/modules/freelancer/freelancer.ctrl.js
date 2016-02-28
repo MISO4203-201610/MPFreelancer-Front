@@ -12,6 +12,7 @@
                 model: model,
                 url: url
             });
+            this.loadRefOptions();
             this.fetchRecords();
             this.globalActions.create = {
                 show: function () {
@@ -71,4 +72,17 @@
                 model: model
             });
         }]);
+
+    mod.controller('FreelancerscurriculumsCtrl', ['CrudCreator', '$scope', 'curriculumModel',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'curriculums',
+                displayName: 'Curriculums',
+                parent: 'freelancer',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
+
 })(window.angular);
