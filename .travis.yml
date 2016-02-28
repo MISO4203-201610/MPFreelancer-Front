@@ -8,3 +8,8 @@ before_install:
   - "npm install -g bower grunt-cli && bower install"
 after_success:
   - grunt sonarRunner
+language: java
+jdk:
+  - oraclejdk8
+after_success:
+  - mvn sonar:sonar
