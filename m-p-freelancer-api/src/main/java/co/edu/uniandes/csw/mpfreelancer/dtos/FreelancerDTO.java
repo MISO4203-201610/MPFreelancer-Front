@@ -24,6 +24,9 @@ public class FreelancerDTO {
     private List<SkillDTO> skills = new ArrayList<>();
     
     private List<EducationDTO> titles = new ArrayList<>();
+    
+    @PodamExclude
+    private List<AgreementDTO> agreements = new ArrayList<>();
 
     /**
      * @generated
@@ -122,5 +125,18 @@ public class FreelancerDTO {
     public void setTitles(List<EducationDTO> titles) {
         this.titles = titles;
     }
-
+    
+    /**
+     * @generated
+     */
+    public List<AgreementDTO> getAgreements() {
+        return agreements;
+    }
+    
+    /**
+     * @generated
+     */
+    public void setAgreements(List<AgreementDTO> agreements) {
+        this.agreements = agreements;
+    }
 }
