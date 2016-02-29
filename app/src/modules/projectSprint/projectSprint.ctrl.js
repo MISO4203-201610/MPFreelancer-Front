@@ -5,14 +5,14 @@
  */
 
 (function (ng) {
-    var mod = ng.module('curriculumModule');
+    var mod = ng.module('projectSprintModule');
 
-    mod.controller('curriculumCtrl', ['CrudCreator', '$scope',
-        'curriculumContext', 'curriculumModel',
+    mod.controller('projectSprintCtrl', ['CrudCreator', '$scope',
+        'projectSprintContext', 'projectSprintModel',
         function (ngCrud, $scope, url, model) {
             ngCrud.extendController({
-                name: 'curriculum',
-                displayName: 'Curriculum',
+                name: 'projectSprint',
+                displayName: 'Project Sprints',
                 ctrl: this,
                 scope: $scope,
                 model: model,

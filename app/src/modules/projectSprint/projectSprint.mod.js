@@ -11,24 +11,29 @@
 
     mod.constant('projectSprintModel', {
         fields: [{
-                name: 'profile',
-                displayName: 'Profile',
+                name: 'name',
+                displayName: 'Nombre',
                 type: 'String',
                 required: true
             }, {
-                name: 'identification',
-                displayName: 'Identification',
+                name: 'description',
+                displayName: 'Descripcion',
                 type: 'String',
                 required: true
             }, {
-                name: 'email',
-                displayName: 'Email',
-                type: 'String',
+                name: 'price',
+                displayName: 'Price',
+                type: 'Integer',
                 required: true
             }, {
-                name: 'mobile',
-                displayName: 'Mobile',
-                type: 'String',
+                name: 'startDate',
+                displayName: 'Fecha de inicio',
+                type: 'Date',
+                required: true
+            },{
+                name: 'deadLine',
+                displayName: 'Dead Line',
+                type: 'Date',
                 required: true
             }]});
 })(window.angular);
