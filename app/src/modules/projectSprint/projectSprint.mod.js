@@ -7,7 +7,7 @@
 (function (ng) {
     var mod = ng.module('projectSprintModule', ['ngCrud']);
 
-    mod.constant('projectSprintContext', 'projectSprints');
+    mod.constant('projectSprintContext', 'sprints');
 
     mod.constant('projectSprintModel', {
         fields: [{

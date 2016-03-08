@@ -13,7 +13,9 @@
         'ngCrud',
         'roleModule',
         'agreementModule',
-        'curriculumModule'
+        'curriculumModule',
+        'projectSprintModule',
+        'artifactModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -91,6 +93,11 @@
                     templateUrl: tplUrl,
                     controller: 'agreementCtrl',
                     controllerAs: alias
+                }).state('projectSprint', {
+                    url: '/projectSprint',
+                    templateUrl: tplUrl,
+                    controller: 'projectSprintCtrl',
+                    controllerAs: alias
                 });
             $urlRouterProvider.otherwise('/');
         }]);
@@ -122,6 +129,11 @@
                         label: 'Curriculum',
                         icon: 'list-alt',
                         state: 'curriculum'
+                    }, {
+                        id: 'projectSprint',
+                        label: 'Project Sprint',
+                        icon: 'list-alt',
+                        state: 'projectSprint'
                     }],
                 'projectSponsor': [{
                         id: 'category',
@@ -148,6 +160,11 @@
                         label: 'Skill',
                         icon: 'list-alt',
                         state: 'skill'
+                    },{
+                        id: 'projectSprint',
+                        label: 'Project Sprint',
+                        icon: 'list-alt',
+                        state: 'projectSprint'
                     }],
                 'admin': [{
                         id: 'freelancer',
