@@ -31,7 +31,13 @@
                 //template: '', //override generic template
                 ctrl: 'FreelancertitlesCtrl',
                 owned: true
-            }, {
+            },{
+                name: 'workExperiences',
+                displayName: 'Work Experience',
+                //template: '', //override generic template
+                ctrl: 'FreelancerWorkExperienceCtrl',
+                owned: true
+            },{
                 name: 'skills',
                 displayName: 'Skills',
                 //template: '', //override generic template

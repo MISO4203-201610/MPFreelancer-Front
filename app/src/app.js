@@ -3,6 +3,7 @@
         //'ngCrudMock',
         'categoryModule',
         'educationModule',
+        'workExperienceModule',
         'freelancerModule',
         'projectModule',
         'projectSponsorModule',
