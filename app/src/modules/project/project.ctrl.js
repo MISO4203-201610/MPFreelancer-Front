@@ -14,6 +14,11 @@
             });
             this.loadRefOptions();
             this.fetchRecords();
+            this.globalActions.create = {
+                show: function () {
+                    return false;
+                }
+            };
         }]);
 
     mod.controller('ProjectsexpectedskillsCtrl', ['CrudCreator', '$scope',
@@ -22,6 +27,21 @@
             ngCrud.extendAggChildCtrl({
                 name: 'expectedskills',
                 displayName: 'Expectedskills',
+                parentUrl: parentUrl,
+                listUrl: url,
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
+
+
+    mod.controller('ProjectsSprintsCtrl', ['CrudCreator', '$scope',
+        'projectSprintModel',
+        function (ngCrud, $scope, model, url, parentUrl) {
+            ngCrud.extendCompChildCtrl({
+                name: 'sprints',
+                displayName: 'Sprints asociados al proyecto',
                 parentUrl: parentUrl,
                 listUrl: url,
                 ctrl: this,

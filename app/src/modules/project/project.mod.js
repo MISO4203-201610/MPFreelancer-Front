@@ -50,6 +50,12 @@
                 required: true
             }],
         childs: [{
+                name: 'sprints',
+                displayName: 'Sprints',
+                //template: '', //override generic template
+                ctrl: 'ProjectsSprintsCtrl',
+                owned: true
+            },{
                 name: 'expectedskills',
                 displayName: 'Expectedskills',
                 //template: '', //override generic template
