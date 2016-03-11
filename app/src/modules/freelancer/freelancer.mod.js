@@ -49,6 +49,12 @@
                 //template: '', //override generic template
                 ctrl: 'FreelancerscurriculumsCtrl',
                 owned: true
+            },{
+                name: 'blogEntries',
+                displayName: 'Blog Entries',
+                //template: '', //override generic template
+                ctrl: 'FreelancersBlogEntryCtrl',
+                owned: true
             }]
     });
 })(window.angular);

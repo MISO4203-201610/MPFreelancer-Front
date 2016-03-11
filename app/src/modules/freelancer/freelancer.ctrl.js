@@ -85,4 +85,16 @@
             });
         }]);
 
+    mod.controller('FreelancersBlogEntryCtrl', ['CrudCreator', '$scope', 'blogEntryModel',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'blogEntries',
+                displayName: 'Blog Entries',
+                parent: 'freelancer',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
+
 })(window.angular);

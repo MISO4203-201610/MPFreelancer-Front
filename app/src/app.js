@@ -13,7 +13,8 @@
         'ngCrud',
         'roleModule',
         'agreementModule',
-        'curriculumModule'
+        'curriculumModule',
+        'blogEntryModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
