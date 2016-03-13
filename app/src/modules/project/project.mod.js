@@ -50,7 +50,7 @@
                 required: true
             }],
         childs: [{
-                name: 'sprints',
+                name: 'projectSprints',
                 displayName: 'Sprints',
                 //template: '', //override generic template
                 ctrl: 'ProjectsSprintsCtrl',

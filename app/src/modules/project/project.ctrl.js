@@ -14,6 +14,7 @@
             });
             this.loadRefOptions();
             this.fetchRecords();
+
             this.globalActions.create = {
                 show: function () {
                     return false;
@@ -35,15 +36,24 @@
             });
         }]);
 
-
-    mod.controller('ProjectsSprintsCtrl', ['CrudCreator', '$scope',
-        'projectSprintModel',
-        function (ngCrud, $scope, model, url, parentUrl) {
+    mod.controller('ProjectsSprintsCtrl', ['CrudCreator', '$scope', 'projectSprintModel',
+        function (ngCrud, $scope, model) {
             ngCrud.extendCompChildCtrl({
-                name: 'sprints',
+                name: 'projectSprints',
                 displayName: 'Sprints asociados al proyecto',
-                parentUrl: parentUrl,
-                listUrl: url,
+                parent: 'project',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
+
+    mod.controller('artifactCtrl', ['CrudCreator', '$scope', 'artifactModel',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'artifacts',
+                displayName: 'ARTI MOD321654',
+                parent: 'project',
                 ctrl: this,
                 scope: $scope,
                 model: model
