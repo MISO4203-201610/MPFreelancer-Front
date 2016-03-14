@@ -35,7 +35,7 @@
     mod.controller('FreelancerWorkExperienceCtrl', ['CrudCreator', '$scope', 'workExperienceModule',
         function (ngCrud, $scope, model) {
             ngCrud.extendCompChildCtrl({
-                name: 'workExperiences',
+                name: 'experiences',
                 displayName: 'Work Experience',
                 parent: 'freelancer',
                 ctrl: this,

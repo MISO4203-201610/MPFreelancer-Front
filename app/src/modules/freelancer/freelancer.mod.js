@@ -32,7 +32,7 @@
                 ctrl: 'FreelancertitlesCtrl',
                 owned: true
             },{
-                name: 'workExperiences',
+                name: 'experiences',
                 displayName: 'Work Experience',
                 //template: '', //override generic template
                 ctrl: 'FreelancerWorkExperienceCtrl',
