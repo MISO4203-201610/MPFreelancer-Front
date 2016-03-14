@@ -93,8 +93,7 @@
                     templateUrl: tplUrl,
                     controller: 'agreementCtrl',
                     controllerAs: alias
-                })
-                .state('projectSprint', {
+                }).state('projectSprint', {
                     url: '/projectSprint',
                     templateUrl: tplUrl,
                     controller: 'projectSprintCtrl',
@@ -130,6 +129,11 @@
                         label: 'Curriculum',
                         icon: 'list-alt',
                         state: 'curriculum'
+                    }, {
+                        id: 'projectSprint',
+                        label: 'Project Sprint',
+                        icon: 'list-alt',
+                        state: 'projectSprint'
                     }],
                 'projectSponsor': [{
                         id: 'category',
@@ -156,7 +160,7 @@
                         label: 'Skill',
                         icon: 'list-alt',
                         state: 'skill'
-                    }, {
+                    },{
                         id: 'projectSprint',
                         label: 'Project Sprint',
                         icon: 'list-alt',
