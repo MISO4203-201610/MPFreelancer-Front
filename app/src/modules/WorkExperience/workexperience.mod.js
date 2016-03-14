@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module('workExperienceModule', ['ngCrud']);
 
-    mod.constant('workExperienceContext', 'workExperiences');
+    mod.constant('workExperienceContext', 'experiences');
 
     mod.constant('workExperienceModule', {
         fields: [{
