@@ -16,7 +16,8 @@
         'agreementModule',
         'curriculumModule',
         'projectSprintModule',
-        'artifactModule'
+        'artifactModule',
+        'blogEntryModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
