@@ -72,7 +72,7 @@
             $scope.getCurrentFreelancer();
 
         }]);
-    mod.controller('FreelancersagreementsCtrl', ['CrudCreator', '$scope', 'freelancerModel',
+    mod.controller('FreelancersagreementsCtrl', ['CrudCreator', '$scope', 'agreementModel',
         function (ngCrud, $scope, model) {
             ngCrud.extendCompChildCtrl({
                 name: 'agreements',
