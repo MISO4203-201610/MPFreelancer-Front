@@ -29,7 +29,25 @@
                 displayName: 'Sponsor Company',
                 type: 'String',
                 required: true
-            }]});
+            },{
+                name: 'price',
+                displayName: 'Price',
+                type: 'Integer',
+                required: true
+            },{
+                name: 'rate',
+                displayName: 'Rate',
+                type: 'Double',
+                required: true
+            },{
+                name: 'url',
+                displayName: 'URL',
+                type: 'String',
+                required: true
+            }
+
+
+        ]});
 })(window.angular);
 
 
