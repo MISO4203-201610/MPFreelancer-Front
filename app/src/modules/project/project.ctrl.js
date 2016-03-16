@@ -30,6 +30,18 @@
             });
         }]);
 
+    mod.controller('ProjectsSprintsCtrl', ['CrudCreator', '$scope', 'projectSprintModel',
+         function (ngCrud, $scope, model) {
+             ngCrud.extendCompChildCtrl({
+                 name: 'projectSprints',
+                 displayName: 'Sprints asociados al proyecto',
+                 parent: 'project',
+                 ctrl: this,
+                 scope: $scope,
+                 model: model
+             });
+         }]);
+
     mod.controller('projectListCtrl', ['$scope','Restangular', function ($scope,Restangular) {
             $scope.getProjectList = function () {
             Restangular.all("projects/all").getList().then(function (response) {
