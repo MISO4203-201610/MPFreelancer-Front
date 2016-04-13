@@ -136,6 +136,11 @@
                         label: 'Project Sprint',
                         icon: 'list-alt',
                         state: 'projectSprint'
+                    }, {
+                        id: 'agreement',
+                        label: 'Agreements',
+                        icon: 'list-alt',
+                        state: 'agreement'
                     }],
                 'projectSponsor': [{
                         id: 'category',
