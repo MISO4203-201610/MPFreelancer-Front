@@ -92,7 +92,7 @@
                 })
                 .state('agreement', {
                     url: '/agreement',
-                    templateUrl: tplUrl,
+                    templateUrl: 'src/modules/agreement/agreement.tpl.html',
                     controller: 'agreementCtrl',
                     controllerAs: alias
                 }).state('projectSprint', {

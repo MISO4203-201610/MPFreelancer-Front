@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Freelancers agreements</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container"> 
+            <div class="page-header">
+                <h1>Agreements</h1>
+            </div>
+            <p class="lead">Below you will see all the invitations sent to your account. Remember, if you agree you must write the value and accept the invitation, otherwise, select reject.</p>
+            <div class="row" id="agreementList">
+
+                <table class="table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">Project Name</th>
+                            <th class="col-xs-2">Sponsor</th>
+                            <th class="col-xs-2">Description</th>
+                            <th class="col-xs-2">Amount</th>
+                            <th class="col-xs-2">Status</th>
+                            <th class="col-xs-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="registro in agreements">
+                            <td class="col-xs-2 cap">{{ registro.name }}</td>
+                            <td class="col-xs-2 cap">{{ registro.name }}</td>
+                            <td class="col-xs-2 cap">{{ registro.name }}</td>
+                            <td class="col-xs-2 cap">
+                                <input placeholder="Monto" type="text" name="monto" id="monto{{registro.id}}" ng-model="agreement.monto" />
+                            </td>
+                            <td class="col-xs-2 cap">{{ registro.name }}</td>
+                            <td class="col-xs-2 cap">
+                                <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Accept</button>
+                                <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div><!--/row-->
+            <div class="row">
+                <hr>
+            </div>
+
+
+        </div><!--/container-->
+    </body>
+</html>
