@@ -17,35 +17,32 @@ and open the template in the editor.
             </div>
             <p class="lead">Below you will see all the invitations sent to your account. Remember, if you agree you must write the value and accept the invitation, otherwise, select reject.</p>
             <div class="row" id="agreementList">
-
-                <table class="table-responsive">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-2">Project Name</th>
-                            <th class="col-xs-2">Sponsor</th>
-                            <th class="col-xs-2">Description</th>
-                            <th class="col-xs-2">Amount</th>
-                            <th class="col-xs-2">Status</th>
-                            <th class="col-xs-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="registro in agreements">
-                            <td class="col-xs-2 cap">{{ registro.name }}</td>
-                            <td class="col-xs-2 cap">{{ registro.name }}</td>
-                            <td class="col-xs-2 cap">{{ registro.name }}</td>
-                            <td class="col-xs-2 cap">
-                                <input placeholder="Monto" type="text" name="monto" id="monto{{registro.id}}" ng-model="agreement.monto" />
-                            </td>
-                            <td class="col-xs-2 cap">{{ registro.name }}</td>
-                            <td class="col-xs-2 cap">
-                                <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Accept</button>
-                                <button class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <form>
+                    <table class="table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-2">Project Name</th>
+                                <th class="col-xs-2">Description</th>
+                                <th class="col-xs-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="registro in agreements">
+                                <td> <label>
+                                        <input type="radio" value="{{ registro.project.id}}" ng-model="formData.proyectoSeleccionado">
+                                        {{ registro.project.name}}
+                                    </label></td>
+                                <td class="col-xs-2 cap">{{ registro.project.description}}</td>
+                                <td class="col-xs-2 cap">{{ registro.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <label>
+                        Add a value for the project selected: <input placeholder="Monto" type="text" name="monto" ng-model="formData.monto" />
+                    </label>
+                    <button class="btn btn-default navbar-btn" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> Accept</button>
+                    <button class="btn btn-default navbar-btn" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                </form>
             </div><!--/row-->
             <div class="row">
                 <hr>
