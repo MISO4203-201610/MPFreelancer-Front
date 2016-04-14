@@ -29,7 +29,7 @@ and open the template in the editor.
                         <tbody>
                             <tr ng-repeat="registro in agreements">
                                 <td> <label>
-                                        <input type="radio" value="{{ registro.project.id}}" ng-model="formData.proyectoSeleccionado">
+                                        <input type="radio" value="{{ registro.id}}" ng-model="formData.proyectoSeleccionado">
                                         {{ registro.project.name}}
                                     </label></td>
                                 <td class="col-xs-2 cap">{{ registro.project.description}}</td>
@@ -38,10 +38,10 @@ and open the template in the editor.
                         </tbody>
                     </table>
                     <label>
-                        Add a value for the project selected: <input placeholder="Monto" type="text" name="monto" ng-model="formData.monto" />
+                        Add a value for the project selected: <input placeholder="Monto" type="number" name="monto" ng-model="formData.monto" />
                     </label>
                     <button class="btn btn-default navbar-btn" ng-click="add()"><span class="glyphicon glyphicon-plus"></span> Accept</button>
-                    <button class="btn btn-default navbar-btn" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <button class="btn btn-default navbar-btn" ng-click="cancel()"><span class="glyphicon glyphicon-remove"></span> Reject</button>
                 </form>
             </div><!--/row-->
             <div class="row">
