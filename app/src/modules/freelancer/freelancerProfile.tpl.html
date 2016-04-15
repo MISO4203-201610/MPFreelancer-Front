@@ -44,7 +44,34 @@
                 <h1>Skills <span class="glyphicon glyphicon-wrench"></span></h1>
                 <div ng-repeat="skill in freelancer.skills " class="row" style="margin: 5px">                    
                     <h3 style="color: black">{{skill.name}}</h3>
-                    {{skill.description}}<br><br>                    
+                    {{skill.description}}<br><br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px" class="col-md-12">
+                <h1>Agreements <span class="glyphicon glyphicon-list-alt"></span></h1>
+                <div ng-repeat="agreement in freelancer.agreements" class="row" style="margin: 5px">
+                    <h3 style="color: black">{{agreement.project.description}}</h3>
+                    {{agreement.price}}<br><br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px" class="col-md-12">
+                <h1>Curriculum <span class="glyphicon glyphicon-briefcase"></span></h1>
+                <div ng-repeat="curriculum in freelancer.curriculums" class="row" style="margin: 5px">
+                    <h3 style="color: black">{{curriculum.profile}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px" class="col-md-12">
+                <h1>Blog entries <span class="glyphicon glyphicon-book"></span></h1>
+                <div ng-repeat="blogEntry in freelancer.blogEntries" class="row" style="margin: 5px">
+                    <h3 style="color: black">{{blogEntry.title}}</h3>
+                    <h4 style="color: black">{{blogEntry.subject}}</h4>
+                    {{blogEntry.description}}<br><br>
                 </div>
             </div>
         </div>
