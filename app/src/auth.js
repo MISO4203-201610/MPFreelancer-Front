@@ -14,6 +14,7 @@
                         $rootScope.projectSponsorProfile = false;
                         $rootScope.freelancerProfile = false;
                         $rootScope.projectSprint = true;
+                        $rootScope.agreement = false;
                     } else {
                         var roles = $rootScope.roles = response.roles;
                         var isFreelance = false;
@@ -29,6 +30,7 @@
                             $rootScope.projectSponsor = false;
                             $rootScope.projectSponsorProfile = false;
                             $rootScope.status = false;
+                            $rootScope.agreement = true;
                         }
                         if (roles.indexOf("projectSponsor") !== -1) {
                             $rootScope.category = true;
@@ -42,6 +44,7 @@
                             }
                             $rootScope.status = false;
                             $rootScope.projectSprint = true;
+                            $rootScope.agreement = false;
                         }
                         if (roles.indexOf("admin") !== -1) {
                             $rootScope.category = true;
@@ -53,6 +56,7 @@
                             $rootScope.projectSponsorProfile = false;
                             $rootScope.freelancerProfile = false;
                             $rootScope.projectSprint = true;
+                            $rootScope.agreement = false;
                         }
                     }
                 });
