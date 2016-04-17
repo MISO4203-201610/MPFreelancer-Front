@@ -33,7 +33,6 @@ describe('Project E2E Testing', function () {
 		element(by.id('price')).sendKeys(priceVarTest);
         element(by.id('status')).all(by.css('option')).last().click();
         element(by.id('category')).all(by.css('option')).last().click();
-        element(by.id('sponsor')).all(by.css('option')).last().click();
         element(by.id('save-project')).click();
         expect(element.all(by.repeater('record in records')).count()).toEqual(1);
     });
