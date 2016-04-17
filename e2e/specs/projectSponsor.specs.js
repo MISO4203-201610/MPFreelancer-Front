@@ -12,39 +12,25 @@ describe('ProjectSponsor E2E Testing', function () {
 
             mod.run(['ngCrudMock.mockRecords', function(records){
                 records['projectSponsors'] = [];
+                records['projectSponsors'].push({id: Math.floor(Math.random() * 10000), name: 'nombrePrueba'});
 
             }]);
         });
     });
 
-    it('should create one projectSponsor', function () {
-        browser.get('#/projectSponsor');
-        element(by.id('create-projectSponsor')).click();
-        element(by.id('name')).sendKeys(nameVarTest);
-        element(by.id('company')).sendKeys(companyVarTest);
-        element(by.id('picture')).sendKeys(pictureVarTest);
-        element(by.id('save-projectSponsor')).click();
-        expect(element.all(by.repeater('record in records')).count()).toEqual(1);
-    });
-
     it('should read one projectSponsor', function () {
-        expect(element(by.id('0-name')).getText()).toBe(nameVarTest);
-        expect(element(by.id('0-company')).getText()).toBe(companyVarTest);
-        expect(element(by.id('0-picture')).getText()).toBe(pictureVarTest);
+        browser.get('#/projectSponsor');
+        expect(element(by.id('0-name')).getText()).toBe('nombrePrueba');
     });
 
     it('should edit one projectSponsor', function () {
         element(by.id('0-edit-btn')).click();
 
         element(by.id('name')).clear().sendKeys('New' + nameVarTest);
-        element(by.id('company')).clear().sendKeys('New' + companyVarTest);
-        element(by.id('picture')).clear().sendKeys('New' + pictureVarTest);
 
         element(by.id('save-projectSponsor')).click();
 
         expect(element(by.id('0-name')).getText()).toBe('New' + nameVarTest);
-        expect(element(by.id('0-company')).getText()).toBe('New' + companyVarTest);
-        expect(element(by.id('0-picture')).getText()).toBe('New' + pictureVarTest);
     });
 
     it('should delete the projectSponsor', function () {
