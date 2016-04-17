@@ -17,7 +17,6 @@
             freelancerResource.customGET('current').then(function (response) {
                 $scope.freelancer = response;
                 var freelancerId = response.id;
-                console.log('consultando agreements del freelancer' + freelancerId);
                 var resource = Restangular.all("agreements/" + freelancerId + "/agreementsFreelancer");
                 resource.getList().then(function (agreementResponse) {
                     var arrayLength = agreementResponse.length;
@@ -48,8 +47,6 @@
             $scope.add = function () {
                 var agreementId = $scope.formData.proyectoSeleccionado;
                 var monto = $scope.formData.monto;
-                console.log('proyecto aceptado');
-                //Restangular.all("agreements/" + agreementId + "/" + monto + "/agreementsAceptd");
                 Restangular.all("agreements/" + agreementId + "/" + monto + "/agreementsAcept").customPUT();
                 $scope.refresh();
             };
