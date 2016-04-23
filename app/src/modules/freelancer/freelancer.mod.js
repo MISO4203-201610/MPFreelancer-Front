@@ -31,7 +31,13 @@
                 //template: '', //override generic template
                 ctrl: 'FreelancertitlesCtrl',
                 owned: true
-            }, {
+            },{
+                name: 'experiences',
+                displayName: 'Work Experience',
+                //template: '', //override generic template
+                ctrl: 'FreelancerWorkExperienceCtrl',
+                owned: true
+            },{
                 name: 'skills',
                 displayName: 'Skills',
                 //template: '', //override generic template
@@ -48,6 +54,12 @@
                 displayName: 'Curriculums',
                 //template: '', //override generic template
                 ctrl: 'FreelancerscurriculumsCtrl',
+                owned: true
+            },{
+                name: 'blogEntries',
+                displayName: 'Blog Entries',
+                //template: '', //override generic template
+                ctrl: 'FreelancersBlogEntryCtrl',
                 owned: true
             }]
     });

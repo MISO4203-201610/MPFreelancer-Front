@@ -41,8 +41,10 @@
         <!-- build:js(<%= meta.src %>) scripts/scripts.js -->
         <!-- include: "type": "js", "files": "<%= meta.includeJsFiles %>" -->
         <script src="src/app.js"></script>
+        <script src="src/modules/WorkExperience/workexperience.mod.js"></script>
         <script src="src/modules/agreement/agreement.mod.js"></script>
         <script src="src/modules/artifact/artifact.mod.js"></script>
+        <script src="src/modules/blogEntry/blogEntry.mod.js"></script>
         <script src="src/modules/category/category.mod.js"></script>
         <script src="src/modules/curriculum/curriculum.mod.js"></script>
         <script src="src/modules/education/education.mod.js"></script>
@@ -55,6 +57,7 @@
         <script src="src/auth.js"></script>
         <script src="src/modules/agreement/agreement.ctrl.js"></script>
         <script src="src/modules/artifact/artifact.ctrl.js"></script>
+        <script src="src/modules/blogEntry/blogEntry.ctrl.js"></script>
         <script src="src/modules/category/category.ctrl.js"></script>
         <script src="src/modules/curriculum/curriculum.ctrl.js"></script>
         <script src="src/modules/freelancer/freelancer.ctrl.js"></script>
@@ -92,8 +95,9 @@
                                 <li ng-if="project"><a ui-sref="project">Project</a></li>
                                 <li ng-if="projectSponsor"><a ui-sref="projectSponsor">Project Sponsor</a></li>
                                 <li ng-if="projectSponsorProfile"><a ui-sref="projectSponsorProfile">Project Sponsor Profile</a></li>
-                                <li ng-if="skill"><a ui-sref="skill">Skill</a></li>
+                                <li ng-if="skill"><a ui-sref="skill">Skills</a></li>
                                 <li ng-if="status"><a ui-sref="status">Status</a></li>
+                                <li ng-if="agreement"><a ui-sref="agreement">Agreements</a></li>
                             </ul>
                             <ul  class="nav navbar-nav navbar-right">
                                 <login-button></login-button>

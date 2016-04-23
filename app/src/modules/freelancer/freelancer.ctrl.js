@@ -32,6 +32,17 @@
                 model: model
             });
         }]);
+    mod.controller('FreelancerWorkExperienceCtrl', ['CrudCreator', '$scope', 'workExperienceModule',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'experiences',
+                displayName: 'Work Experience',
+                parent: 'freelancer',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
 
     mod.controller('FreelancersskillsCtrl', ['CrudCreator', '$scope',
         'skillModel', 'skillContext', 'freelancerContext',
@@ -61,7 +72,7 @@
             $scope.getCurrentFreelancer();
 
         }]);
-    mod.controller('FreelancersagreementsCtrl', ['CrudCreator', '$scope', 'freelancerModel',
+    mod.controller('FreelancersagreementsCtrl', ['CrudCreator', '$scope', 'agreementModel',
         function (ngCrud, $scope, model) {
             ngCrud.extendCompChildCtrl({
                 name: 'agreements',
@@ -78,6 +89,18 @@
             ngCrud.extendCompChildCtrl({
                 name: 'curriculums',
                 displayName: 'Curriculums',
+                parent: 'freelancer',
+                ctrl: this,
+                scope: $scope,
+                model: model
+            });
+        }]);
+
+    mod.controller('FreelancersBlogEntryCtrl', ['CrudCreator', '$scope', 'blogEntryModel',
+        function (ngCrud, $scope, model) {
+            ngCrud.extendCompChildCtrl({
+                name: 'blogEntries',
+                displayName: 'Blog Entries',
                 parent: 'freelancer',
                 ctrl: this,
                 scope: $scope,

@@ -15,7 +15,7 @@
                 type: 'String',
                 required: true
             }, {
-                name: 'level',
+                name: 'skillLevel',
                 displayName: 'Level',
                 type: 'String',
                 required: true

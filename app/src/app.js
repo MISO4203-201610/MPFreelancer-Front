@@ -3,6 +3,7 @@
         //'ngCrudMock',
         'categoryModule',
         'educationModule',
+        'workExperienceModule',
         'freelancerModule',
         'projectModule',
         'projectSponsorModule',
@@ -15,7 +16,8 @@
         'agreementModule',
         'curriculumModule',
         'projectSprintModule',
-        'artifactModule'
+        'artifactModule',
+        'blogEntryModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -90,7 +92,7 @@
                 })
                 .state('agreement', {
                     url: '/agreement',
-                    templateUrl: tplUrl,
+                    templateUrl: 'src/modules/agreement/agreement.tpl.html',
                     controller: 'agreementCtrl',
                     controllerAs: alias
                 }).state('projectSprint', {
@@ -134,6 +136,11 @@
                         label: 'Project Sprint',
                         icon: 'list-alt',
                         state: 'projectSprint'
+                    }, {
+                        id: 'agreement',
+                        label: 'Agreements',
+                        icon: 'list-alt',
+                        state: 'agreement'
                     }],
                 'projectSponsor': [{
                         id: 'category',
