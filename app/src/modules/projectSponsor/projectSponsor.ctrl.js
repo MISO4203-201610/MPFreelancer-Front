@@ -49,4 +49,21 @@
             $scope.getCurrentProjectSponsor();
 
         }]);
+
+
+    mod.controller('invitationsCtrl', ['$scope','Restangular', function ($scope,Restangular) {
+            $scope.getCurrentProjectSponsor = function () {
+            Restangular.all("projectSponsors").customGET('current').then(function (response) {
+                $scope.projectSponsor = response;
+            });
+
+            Restangular.all("users").customGET('me').then(function (response) {
+                $scope.user = response;
+            });
+        };
+
+            $scope.getCurrentProjectSponsor();
+
+        }]);
+
 })(window.angular);

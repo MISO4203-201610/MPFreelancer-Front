@@ -84,6 +84,12 @@
                     controller: 'projectSponsorProfileCtrl',
                     controllerAs: alias
                 })
+                .state('invitations', {
+                    url: '/invitations',
+                    templateUrl: "src/modules/projectSponsor/invitations.tpl.html",
+                    controller: 'invitationsCtrl',
+                    controllerAs: alias
+                })
                 .state('projectList', {
                     url: '/projectList',
                     templateUrl: "src/modules/project/projectList.tpl.html",
@@ -163,6 +169,11 @@
                         icon: 'list-alt',
                         state: 'projectSponsorProfile'
                     }, {
+                        id: 'invitations',
+                        label: 'Invitations',
+                        icon: 'list-alt',
+                        state: 'invitations'
+                    },{
                         id: 'skill',
                         label: 'Skill',
                         icon: 'list-alt',
