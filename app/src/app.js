@@ -90,6 +90,12 @@
                     controller: 'invitationsCtrl',
                     controllerAs: alias
                 })
+                .state('candidates', {
+                    url: '/candidates/:idProject',
+                    templateUrl: "src/modules/projectSponsor/candidates.tpl.html",
+                    controller: 'candidatesCtrl',
+                    controllerAs: alias
+                })
                 .state('projectList', {
                     url: '/projectList',
                     templateUrl: "src/modules/project/projectList.tpl.html",
@@ -108,6 +114,7 @@
                     controllerAs: alias
                 });
             $urlRouterProvider.otherwise('/');
+
         }]);
 
     mod.config(['authServiceProvider', function (auth) {
@@ -173,6 +180,11 @@
                         label: 'Invitations',
                         icon: 'list-alt',
                         state: 'invitations'
+                    },{
+                        id: 'candidates',
+                        label: 'Candidates',
+                        icon: 'list-alt',
+                        state: 'candidates'
                     },{
                         id: 'skill',
                         label: 'Skill',
