@@ -96,6 +96,12 @@
                     controller: 'candidatesCtrl',
                     controllerAs: alias
                 })
+                .state('freelancerDetails', {
+                    url: '/freelancerDetails/:idFreelancer',
+                    templateUrl: "src/modules/projectSponsor/freelancerDetails.tpl.html",
+                    controller: 'freelancerDetailsCtrl',
+                    controllerAs: alias
+                })
                 .state('projectList', {
                     url: '/projectList',
                     templateUrl: "src/modules/project/projectList.tpl.html",
@@ -185,6 +191,11 @@
                         label: 'Candidates',
                         icon: 'list-alt',
                         state: 'candidates'
+                    },{
+                        id: 'freelancerDetails',
+                        label: 'FreelancerDetails',
+                        icon: 'list-alt',
+                        state: 'freelancerDetails'
                     },{
                         id: 'skill',
                         label: 'Skill',

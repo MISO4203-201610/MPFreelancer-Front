@@ -79,4 +79,17 @@
 
         }]);
 
+    mod.controller('freelancerDetailsCtrl', ['$scope','$stateParams', 'Restangular', function ($scope, $stateParams, Restangular) {
+            $scope.getFreelancerDetails = function () {
+            var idFreelancer = $stateParams.idFreelancer;
+            Restangular.one("freelancers/" + idFreelancer).get().then(function (response) {
+                $scope.freelancer = response;
+            });
+
+        };
+
+            $scope.getFreelancerDetails();
+
+        }]);
+
 })(window.angular);
