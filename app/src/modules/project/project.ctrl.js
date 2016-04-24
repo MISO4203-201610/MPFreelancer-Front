@@ -53,4 +53,5 @@
             $scope.getProjectList();
 
         }]);
+
 })(window.angular);

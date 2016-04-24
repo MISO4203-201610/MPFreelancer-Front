@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<div class="list">
+    <div id="profile" >
+        
+        <div class="row">
+            <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px" class="col-md-12">
+                <h1>Possible candidates <span class="glyphicon glyphicon-user"></span></h1>
+            </div>
+            
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="ng-binding ng-scope">Id</th>
+                        <th class="ng-binding ng-scope">Name</th>
+                        <th class="ng-binding ng-scope">Rate</th>
+                        <th class="ng-scope">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="candidate in candidates" class="ng-scope">
+                        <td id="0-id" class="ng-scope">
+                            <div class="ng-binding ng-scope">{{candidate.id}}</div>
+                        </td>
+                        <td id="0-name" class="ng-scope">
+                            <div class="ng-binding ng-scope">{{candidate.name}}</div>
+                        </td>
+                        <td id="0-rate" class="ng-scope">
+                            <div class="ng-binding ng-scope">{{candidate.rate}}</div>
+                        </td>
+                        <td class="ng-scope">
+                            <button id="0-details-btn" class="btn btn-default btn-sm ng-binding ng-scope" ><span class="glyphicon glyphicon-search"></span> View freelancer details</button>
+                            <button id="0-edit-btn" class="btn btn-default btn-sm ng-binding ng-scope" ><span class="glyphicon glyphicon-hand-right"></span> Postulate</button>
+                        </td>
+                    </tr>
+                    <li ng-hide="candidates.length">There are not possible candidates.</li>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
