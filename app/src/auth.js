@@ -15,6 +15,7 @@
                         $rootScope.invitations = false;
                         $rootScope.candidates = false;
                         $rootScope.freelancerDetails = false;
+                        $rootScope.agreementResult = false;
                         $rootScope.freelancerProfile = false;
                         $rootScope.projectSprint = true;
                         $rootScope.agreement = false;
@@ -35,6 +36,7 @@
                             $rootScope.invitations = false;
                             $rootScope.candidates = false;
                             $rootScope.freelancerDetails = false;
+                            $rootScope.agreementResult = false;
                             $rootScope.status = false;
                             $rootScope.agreement = true;
                         }
@@ -46,6 +48,7 @@
                             $rootScope.invitations = true;
                             $rootScope.candidates = true;
                             $rootScope.freelancerDetails = true;
+                            $rootScope.agreementResult = true;
                             $rootScope.skill = true;
                             if (isFreelance === false) {
                                 $rootScope.freelancer = false;
@@ -66,6 +69,7 @@
                             $rootScope.invitations = false;
                             $rootScope.candidates = false;
                             $rootScope.freelancerDetails = false;
+                            $rootScope.agreementResult = false;
                             $rootScope.freelancerProfile = false;
                             $rootScope.projectSprint = true;
                             $rootScope.agreement = false;
