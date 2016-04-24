@@ -102,6 +102,12 @@
                     controller: 'freelancerDetailsCtrl',
                     controllerAs: alias
                 })
+                .state('agreementResult', {
+                    url: '/agreementResult/:idFreelancer/:idProject',
+                    templateUrl: "src/modules/projectSponsor/agreementResult.tpl.html",
+                    controller: 'agreementResultCtrl',
+                    controllerAs: alias
+                })
                 .state('projectList', {
                     url: '/projectList',
                     templateUrl: "src/modules/project/projectList.tpl.html",

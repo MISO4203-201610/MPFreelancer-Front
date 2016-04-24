@@ -71,6 +71,7 @@
             var idProject = $stateParams.idProject;
             Restangular.all("freelancers/" + idProject + "/totalSkills").getList().then(function (response) {
                 $scope.candidates = response;
+                $scope.currentProject = idProject;
             });
 
         };
@@ -89,6 +90,20 @@
         };
 
             $scope.getFreelancerDetails();
+
+        }]);
+
+    mod.controller('agreementResultCtrl', ['$scope','$stateParams', 'Restangular', function ($scope, $stateParams, Restangular) {
+            $scope.getAgreementResult = function () {
+            var idFreelancer = $stateParams.idFreelancer;
+            var idProject = $stateParams.idProject;
+            Restangular.one("agreements/" + idFreelancer + "/agreementsInvited/" + idProject).post().then(function (response) {
+                $scope.agreement = response;
+            });
+
+        };
+
+            $scope.getAgreementResult();
 
         }]);
 
