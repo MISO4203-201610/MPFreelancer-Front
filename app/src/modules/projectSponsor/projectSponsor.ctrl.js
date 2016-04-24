@@ -66,4 +66,17 @@
 
         }]);
 
+    mod.controller('candidatesCtrl', ['$scope','$stateParams', 'Restangular', function ($scope, $stateParams, Restangular) {
+            $scope.getCandidatesList = function () {
+            var idProject = $stateParams.idProject;
+            Restangular.all("freelancers/" + idProject + "/totalSkills").getList().then(function (response) {
+                $scope.candidates = response;
+            });
+
+        };
+
+            $scope.getCandidatesList();
+
+        }]);
+
 })(window.angular);
