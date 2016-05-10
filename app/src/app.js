@@ -124,6 +124,11 @@
                     templateUrl: tplUrl,
                     controller: 'projectSprintCtrl',
                     controllerAs: alias
+                }).state('questions', {
+                    url: '/questions',
+                    templateUrl: 'src/modules/questions/questions.tpl.html',
+                    controller: 'questionsCtrl',
+                    controllerAs: alias
                 });
             $urlRouterProvider.otherwise('/');
 
