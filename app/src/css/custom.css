@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9/05/2016, 07:35:09 PM
+    Author     : alex.chacon
+*/
+
+.container {
+    border-bottom: 1px solid #178acc;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    filter: none;
+        
+}
+
+.project{
+  background: 
+   url('../img/sd2.png') bottom right no-repeat ,
+   url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png) repeat; 
+
+}
