@@ -25,7 +25,7 @@
                         var isFreelance = false;
                         if (roles.indexOf("freelancer") !== -1) {
                             isFreelance = true;
-                            $rootScope.skill = true;
+                            $rootScope.skill = false;
                             $rootScope.curriculum = true;
                             $rootScope.projectSprint = true;
                             $rootScope.freelancer = true;
@@ -50,7 +50,7 @@
                             $rootScope.candidates = true;
                             $rootScope.freelancerDetails = true;
                             $rootScope.agreementResult = true;
-                            $rootScope.skill = true;
+                            $rootScope.skill = false;
                             if (isFreelance === false) {
                                 $rootScope.freelancer = false;
                                 $rootScope.freelancerProfile = false;

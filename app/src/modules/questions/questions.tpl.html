@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Freelancers questions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div> 
+            <div class="page-header">
+                <h1 id="agreementTitle" >Questions?</h1>
+            </div>
+            <p class="lead">Have you got questions related with the project? This is the place for you: Scope, price, language, functional and not functional requeriments.</p>
+            <br/>
+            <br/>
+            <div >
+                <form>
+                    <table class="table-responsive" width="100%">
+                        
+                            <tr>
+                                <td> <label>
+                                        Subject
+                                    </label></td>
+                                    <td ><input size="100" type="text" ng-model="myTextarea2"><br/><br/></td>
+                            </tr>
+                            <tr>
+                                <td> <label>
+                                        Question description
+                                    </label></td>
+                                    <td><textarea cols="100" rows="15" ng-model="myTextarea"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td> &nbsp; </td>
+                                <td><button id="accept-agreement" class="btn btn-default navbar-btn" ng-click="add()"><span class="glyphicon glyphicon-send"></span> Enviar</button></td>
+                            </tr>
+                       
+                    </table>
+                    
+                </form>
+            </div><!--/row-->
+            <div class="row">
+                <hr>
+            </div>
+
+
+        </div>
+    </body>
+</html>

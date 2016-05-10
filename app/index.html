@@ -13,9 +13,10 @@
         <!-- endbower -->
         <!-- endbuild -->
 
+        <link rel="stylesheet" href="src/css/custom.css" />
         <!-- build:css(<%= meta.src %>) styles/main.css -->
         <!-- include: "type": "css", "files": "<%= meta.includeCssFiles %>" -->
-        
+        <link href="src/css/custom.css" rel="stylesheet" type="text/css">
         <!-- /include -->
         <!-- endbuild -->
 
@@ -52,6 +53,7 @@
         <script src="src/modules/project/project.mod.js"></script>
         <script src="src/modules/projectSponsor/projectSponsor.mod.js"></script>
         <script src="src/modules/projectSprint/projectSprint.mod.js"></script>
+        <script src="src/modules/questions/questions.mod.js"></script>
         <script src="src/modules/skill/skill.mod.js"></script>
         <script src="src/modules/status/status.mod.js"></script>
         <script src="src/modules/user/user.mod.js"></script>
@@ -64,6 +66,7 @@
         <script src="src/modules/freelancer/freelancer.ctrl.js"></script>
         <script src="src/modules/project/project.ctrl.js"></script>
         <script src="src/modules/projectSponsor/projectSponsor.ctrl.js"></script>
+        <script src="src/modules/questions/questions.ctrl.js"></script>
         <script src="src/modules/skill/skill.ctrl.js"></script>
         <script src="src/modules/status/status.ctrl.js"></script>
         <script src="src/modules/user/user.ctrl.js"></script>
@@ -72,7 +75,7 @@
         
 
     </head>
-    <body  style="padding-top: 60px;">
+    <body  style="padding-top: 60px;" class="project project2">
         <div class="container">
             <div class="col-md-12">
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -92,8 +95,8 @@
                         <div  class="collapse navbar-collapse" id="main-bar">
                             <ul id="menu" ng-controller="roleCtrl" id="menu" class="nav navbar-nav">
                                 <li ng-if="category"><a ui-sref="category">Category</a></li>
-                                <li ng-if="freelancer"><a ui-sref="freelancer">Freelancer</a></li>
-                                <li ng-if="freelancerProfile"><a ui-sref="freelancerProfile">Freelancer Profile</a></li>
+                                <li ng-if="freelancer"><a ui-sref="freelancer">Edit my profile</a></li>
+                                <li ng-if="freelancerProfile"><a ui-sref="freelancerProfile">View my profile</a></li>
                                 <li ng-if="project"><a ui-sref="project">Project</a></li>
                                 <li ng-if="projectSponsor"><a ui-sref="projectSponsor">Project Sponsor</a></li>
                                 <li ng-if="projectSponsorProfile"><a ui-sref="projectSponsorProfile">Project Sponsor Profile</a></li>
@@ -109,7 +112,14 @@
                     </div> <!-- /.container-fluid -->
                 </nav>
             </div>
-            <div ui-view></div>
+            <br/>
+            <br/>
+            <br/>
+            <div ui-view>
+                <iframe width="1135" height="515" align="middle" src="https://www.youtube.com/embed/_nQ2lPVMOus?autoplay=1" frameborder="0"></iframe>
+            </div>
         </div>
+        <div class="footer"> <img src="src/img/sd2.png" alt=""/></div>
+       
     </body>
 </html>
