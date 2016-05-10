@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="src/css/custom.css" />
         <!-- build:css(<%= meta.src %>) styles/main.css -->
         <!-- include: "type": "css", "files": "<%= meta.includeCssFiles %>" -->
-        
+        <link href="src/css/custom.css" rel="stylesheet" type="text/css">
         <!-- /include -->
         <!-- endbuild -->
 
@@ -91,8 +91,8 @@
                         <div  class="collapse navbar-collapse" id="main-bar">
                             <ul id="menu" ng-controller="roleCtrl" id="menu" class="nav navbar-nav">
                                 <li ng-if="category"><a ui-sref="category">Category</a></li>
-                                <li ng-if="freelancer"><a ui-sref="freelancer">Freelancer</a></li>
-                                <li ng-if="freelancerProfile"><a ui-sref="freelancerProfile">Freelancer Profile</a></li>
+                                <li ng-if="freelancer"><a ui-sref="freelancer">Edit my profile</a></li>
+                                <li ng-if="freelancerProfile"><a ui-sref="freelancerProfile">View my profile</a></li>
                                 <li ng-if="project"><a ui-sref="project">Project</a></li>
                                 <li ng-if="projectSponsor"><a ui-sref="projectSponsor">Project Sponsor</a></li>
                                 <li ng-if="projectSponsorProfile"><a ui-sref="projectSponsorProfile">Project Sponsor Profile</a></li>
