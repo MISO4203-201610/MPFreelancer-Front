@@ -17,7 +17,8 @@
         'curriculumModule',
         'projectSprintModule',
         'artifactModule',
-        'blogEntryModule'
+        'blogEntryModule',
+        'userModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -124,6 +125,11 @@
                     templateUrl: tplUrl,
                     controller: 'projectSprintCtrl',
                     controllerAs: alias
+                }).state('user', {
+                    url: '/user',
+                    templateUrl: tplUrl,
+                    controller: 'userCtrl',
+                    controllerAs: alias
                 }).state('questions', {
                     url: '/questions',
                     templateUrl: 'src/modules/questions/questions.tpl.html',
@@ -228,6 +234,11 @@
                         label: 'Skill',
                         icon: 'list-alt',
                         state: 'skill'
+                    }, {
+                        id: 'user',
+                        label: 'User',
+                        icon: 'list-alt',
+                        state: 'user'
                     }]
             });
         }]);

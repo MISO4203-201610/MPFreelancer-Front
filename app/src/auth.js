@@ -19,6 +19,7 @@
                         $rootScope.freelancerProfile = false;
                         $rootScope.projectSprint = true;
                         $rootScope.agreement = false;
+                        $rootScope.user = false;
                     } else {
                         var roles = $rootScope.roles = response.roles;
                         var isFreelance = false;
@@ -73,6 +74,7 @@
                             $rootScope.freelancerProfile = false;
                             $rootScope.projectSprint = true;
                             $rootScope.agreement = false;
+                            $rootScope.user = true;
                         }
                     }
                 });
